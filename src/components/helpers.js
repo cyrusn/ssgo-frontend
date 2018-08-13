@@ -1,3 +1,4 @@
+import moment from 'moment'
 export function createDownloadFile (data, filename, extname) {
   let blob = new Blob([data], {
     type: 'text/plain;charset=UTF-8'
@@ -6,7 +7,8 @@ export function createDownloadFile (data, filename, extname) {
 
   link.href = URL.createObjectURL(blob)
 
-  let today = new Date().toLocaleString('zh-HK', {hour12: false})
+  let today = moment().format('YYYY-MM-DD_hh-mm-ss')
+
   link.download = `${filename}-${today}.${extname}`
   link.click()
 }

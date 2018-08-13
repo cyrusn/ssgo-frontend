@@ -1,12 +1,12 @@
 <template>
   <div class="btn-group col-auto">
     <button type="button" class="btn btn-info"
-      @click="onDownloadCSV(list, 'student', 'csv')">
+      @click="onDownloadCSV(list, filename, 'csv')">
       下載 CSV
     </button>
 
     <button type="button" class="btn btn-warning"
-      @click="onDownloadJSON(list, 'student', 'json')">
+      @click="onDownloadJSON(list, filename, 'json')">
       下載 JSON
     </button>
   </div>
@@ -19,7 +19,7 @@ import _ from 'lodash'
 import {createDownloadFile, onDownloadJSON} from '@/components/helpers'
 
 export default {
-  props: ['list'],
+  props: ['list', 'filename'],
   methods: {
     createDownloadFile,
     onDownloadJSON,

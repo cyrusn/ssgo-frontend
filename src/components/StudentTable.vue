@@ -31,7 +31,7 @@
             {{s.isConfirmed ? '已確認' : '尚未確認'}}
           </button>
         </td>
-        <td v-if="role==='ADMIN'">{{s.rank === 0 ? '尚未提供' : s.rank}}</td>
+        <td v-if="role==='ADMIN'" :class="{'text-danger': s.rank === 0}">{{s.rank === 0 ? '尚未提供' : s.rank}}</td>
       </tr>
     </tbody>
   </table>
