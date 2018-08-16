@@ -21,7 +21,7 @@
         class="btn
         btn-primary"
         @click="update"
-        :disabled='errorMessage'
+        :disabled='errorMessage !== ""'
         >
         上載
       </button>
