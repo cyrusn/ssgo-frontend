@@ -7,6 +7,7 @@
 
     <button
       v-if="!disabled"
+      type="button"
       class="btn mr-2 mb-2"
       :class="disabled ? 'btn-secondary' :'btn-danger'"
       :disabled="disabled"

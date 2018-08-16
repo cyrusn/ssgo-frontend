@@ -13,8 +13,10 @@
       <div class="form-group">
         <textarea rows=5 class="form-control" v-model='csvData'></textarea>
       </div>
-      <button class="btn btn-info mr-2"
-      data-toggle="collapse" data-target="#exampleRank"
+      <button
+        class="btn btn-info mr-2"
+        type="button"
+        data-toggle="collapse" data-target="#exampleRank"
       >顯示例子</button>
       <button
         type="button"

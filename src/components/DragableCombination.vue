@@ -5,7 +5,7 @@
       <div v-for="(e, n) in list" :key='e.id'
         class="draggable col-xl-2 col-md-4 col-6 my-1">
         <div class='btn-group btn-group-sm w-100'>
-          <button class="btn" :class='color' style='width: 25%' :disabled="!movable">
+          <button type="button" class="btn" :class='color' style='width: 25%' :disabled="!movable">
             <span v-if="name === 'available'">
               <i class="fas fa-arrows-alt mr-2"></i>
             </span>
