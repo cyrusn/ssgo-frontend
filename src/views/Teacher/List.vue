@@ -16,8 +16,11 @@
             <option value='unconfirmed'>尚未確認</option>
           </select>
         </div>
-        <download-list-button-group :list="filteredStudents"
-          :filename="filename"/>
+        <download-list-button-group
+          :list="filteredStudents"
+          :filename="filename"
+          :role='role'
+        />
       </div>
     </form>
     <student-table :list="filteredStudents"/>
@@ -29,7 +32,7 @@ import StudentTable from '@/components/StudentTable'
 import DownloadListButtonGroup from '@/components/DownloadListButtonGroup'
 
 import _ from 'lodash'
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -50,6 +53,7 @@ export default {
       return _.compact(names).join('-')
     },
     ...mapState('students', ['students']),
+    ...mapGetters(['role']),
     filteredStudents () {
       const {students, classcodeFilter, isConfirmedFilter} = this
       return _(students)

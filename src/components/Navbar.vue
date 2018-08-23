@@ -1,10 +1,12 @@
 <template>
  <nav :class="navbarClass">
-    <span :class="navbarBrandClass">高中選科系統</span>
+    <a :class="navbarBrandClass" href="https://liping.edu.hk">
+      聖公會李炳中學
+    </a>
     <button class="navbar-toggler"
       type="button"
-      data-toggle="collapse"
-      data-target="#navbar">
+      @click='onToggle'
+      >
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -37,6 +39,7 @@
 </template>
 
 <script>
+/* global $ */
 import _ from 'lodash'
 
 import teachers from '@/data/teacher'
@@ -103,6 +106,9 @@ export default {
     },
     includes (array, value) {
       return _.includes(array, value)
+    },
+    onToggle () {
+      $('#navbar').collapse('toggle')
     }
   }
 }

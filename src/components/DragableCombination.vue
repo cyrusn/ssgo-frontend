@@ -12,8 +12,10 @@
             <span v-else class="badge badge-light badge-pill">{{n+1}}</span>
           </button>
           <button type="button" class="btn" :class='color' :disabled="!movable"
-            v-for="s in e.subjects" :key='s.id' style='width: 37.5%'>
-            {{getName(s)}}
+            v-for="s in e.subjects" :key='s.id' style='width: 37.5%'
+            data-toggle="tooltip" data-placement="top" :title="getSubject(s).cname"
+            >
+            {{getSubject(s).slug}}
           </button>
         </div>
       </div>
@@ -47,8 +49,8 @@ export default {
   },
   methods: {
     ...mapActions('student', ['updatePriorities']),
-    getName (code) {
-      return _.find(subjects, {code}).slug
+    getSubject (code) {
+      return _.find(subjects, {code})
     }
   }
 }

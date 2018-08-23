@@ -1,12 +1,12 @@
 <template>
   <div class="btn-group col-auto">
     <button type="button" class="btn btn-info"
-      @click="onDownloadCSV(list, filename, 'csv')">
+      @click="onDownloadCSV">
       下載 CSV
     </button>
 
     <button type="button" class="btn btn-warning"
-      @click="onDownloadJSON(list, filename, 'json')">
+      @click="onDownloadJSON">
       下載 JSON
     </button>
   </div>
@@ -16,25 +16,33 @@
 import Papa from 'papaparse'
 import combination from '@/data/combination'
 import _ from 'lodash'
-import {createDownloadFile, onDownloadJSON} from '@/components/helpers'
+import {createDownloadFile, downloadJSON} from '@/components/helpers'
 
 export default {
-  props: ['list', 'filename'],
+  props: ['list', 'filename', 'role'],
+  computed: {
+    removePrioritiesAndRankList () {
+      const {list} = this
+      return _.map(list, e => _.omit(e, 'priorities', 'rank'))
+    }
+  },
   methods: {
-    createDownloadFile,
-    onDownloadJSON,
-    onDownloadCSV (jsonData, filename, extname) {
-      // create headers fields
-      let fields = _(jsonData[0])
-        .keys()
-        .pull('priorities')
-        .value()
+    onDownloadJSON () {
+      const {list, role, removePrioritiesAndRankList, filename} = this
+      switch (role) {
+        case 'TEACHER':
+          downloadJSON(removePrioritiesAndRankList, filename, 'json')
+          break
+        case 'ADMIN':
+          downloadJSON(list, filename, 'json')
+          break
+        default:
+          downloadJSON([], filename, 'json')
+      }
 
-      combination.forEach(comb => {
-        fields.push(comb.subjects.join('+'))
-      })
-
-      let result = _(jsonData).map(student => {
+    },
+    createCSVData (json) {
+      return _(json).map(student => {
         return _(combination)
           .map(comb => {
             comb.priorities = student.priorities.indexOf(comb.id)
@@ -46,12 +54,37 @@ export default {
           .omit('priorities')
           .value()
       }).value()
+    },
+    onDownloadCSV () {
 
-      let csv = Papa.unparse({
-        data: result,
-        fields
-      })
-      this.createDownloadFile(csv, filename, extname)
+      const {role, createCSVData, list, removePrioritiesAndRankList, filename} = this
+      let csv
+      switch (role) {
+        case 'TEACHER':
+          csv = Papa.unparse({
+            data: removePrioritiesAndRankList
+          })
+          break
+        case 'ADMIN':
+          // create headers fields
+          let fields = _(list[0])
+            .keys()
+            .pull('priorities')
+            .value()
+
+          combination.forEach(comb => {
+            fields.push(comb.subjects.join('+'))
+          })
+          csv = Papa.unparse({
+            data: createCSVData(list),
+            fields
+          })
+          break
+        default:
+          csv = ""
+          break
+      }
+      createDownloadFile(csv, filename, 'csv')
     }
   }
 }

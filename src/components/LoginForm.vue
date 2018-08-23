@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center">聖公會李炳中學</h1>
+    <h1 class="text-center">{{ isMock ? '高中模擬選科系統': '高中選科系統'}}</h1>
     <hr>
     <form class="col-lg-8 mx-auto justify-content-center" @keyup.enter='onLogin'>
       <div class="form-group row">
@@ -29,6 +29,7 @@
 <script>
 import _ from 'lodash'
 import {mapState, mapActions, mapGetters} from 'vuex'
+import {isMock} from '@/config.js'
 
 export default {
   mounted () {
@@ -37,7 +38,8 @@ export default {
   data () {
     return {
       userAlias: '',
-      password: ''
+      password: '',
+      isMock
     }
   },
   watch: {

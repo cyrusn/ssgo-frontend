@@ -13,7 +13,7 @@ export function createDownloadFile (data, filename, extname) {
   link.click()
 }
 
-export function onDownloadJSON (jsonData, filename, extname) {
-  let data = JSON.stringify(jsonData)
-  this.createDownloadFile(data, filename, extname)
+export function downloadJSON (json, filename, extname) {
+  let jsonData = JSON.stringify(json)
+  createDownloadFile(jsonData, filename, extname)
 }

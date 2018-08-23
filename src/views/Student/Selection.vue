@@ -19,7 +19,7 @@
         :list="prioritisedCombinations"
         :movable="!isConfirmed"
         name="prioritised"
-        color="btn-success"
+        :color="isConfirmed? 'btn-success' : 'btn-danger' "
         />
     </div>
   </div>

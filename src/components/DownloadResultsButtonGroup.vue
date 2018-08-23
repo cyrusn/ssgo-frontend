@@ -16,12 +16,11 @@
 import Papa from 'papaparse'
 import _ from 'lodash'
 import combination from '@/data/combination'
-import {createDownloadFile, onDownloadJSON} from '@/components/helpers'
+import {createDownloadFile, downloadJSON as onDownloadJSON} from '@/components/helpers'
 
 export default {
   props: ['results'],
   methods: {
-    createDownloadFile,
     onDownloadJSON,
     onDownloadCSV (jsonData, filename, extname) {
       // create headers fields
@@ -61,7 +60,7 @@ export default {
         data: result,
         fields
       })
-      this.createDownloadFile(csv, filename, extname)
+      createDownloadFile(csv, filename, extname)
     }
   }
 }
