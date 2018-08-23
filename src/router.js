@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue'
-
 import Login from '@/views/Login.vue'
 
 import Teacher from '@/views/Teacher/Teacher.vue'
@@ -22,8 +20,7 @@ Vue.use(Router)
 function ViewBuilder (View) {
   return {
     default: View,
-    navbar: Navbar,
-    footer: Footer
+    navbar: Navbar
   }
 }
 
