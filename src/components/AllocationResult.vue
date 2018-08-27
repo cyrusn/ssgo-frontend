@@ -61,7 +61,8 @@ export default {
       const {resetCounters, allocate, filterdStudents, resetOccupiedSubjects} = this
       resetOccupiedSubjects()
       resetCounters()
-      return _.filter(allocate(filterdStudents), s => s.preference > 0)
+      const allocatedStudents = allocate(filterdStudents)
+      return _.filter(allocatedStudents, s => s.preference > 0)
     }
   },
   methods: {
@@ -119,7 +120,7 @@ export default {
             ['subject1', 'subject2'],
             codes.map(code => counters[code])
           )
-          preference = i
+          preference = (i + 1)
           // break lodash forEach loop
           return false
         }
