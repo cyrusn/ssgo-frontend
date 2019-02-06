@@ -1,14 +1,16 @@
 <template>
   <div class="btn-group">
-    <button type="button" class="btn btn-info"
-      @click="onDownloadCSV(results, 'result', 'csv')">
-      下載 CSV
-    </button>
+    <button
+      type="button"
+      class="btn btn-info"
+      @click="onDownloadCSV(results, 'result', 'csv')"
+    >下載 CSV</button>
 
-    <button type="button" class="btn btn-warning"
-      @click="onDownloadJSON(results, 'result', 'json')">
-      下載 JSON
-    </button>
+    <button
+      type="button"
+      class="btn btn-warning"
+      @click="onDownloadJSON(results, 'result', 'json')"
+    >下載 JSON</button>
   </div>
 </template>
 
@@ -16,7 +18,10 @@
 import Papa from 'papaparse'
 import _ from 'lodash'
 import combination from '@/data/combination'
-import {createDownloadFile, downloadJSON as onDownloadJSON} from '@/components/helpers'
+import {
+  createDownloadFile,
+  downloadJSON as onDownloadJSON
+} from '@/components/helpers'
 
 export default {
   props: ['results'],
@@ -37,24 +42,27 @@ export default {
 
       fields.push('subject1', 'subject2', 'orderInSubject1', 'orderInSubject2')
 
-      let result = _(jsonData).map(student => {
-        student['subject1'] = student.offers.subject1
-        student['subject2'] = student.offers.subject2
-        student['orderInSubject1'] = student.orders.subject1
-        student['orderInSubject2'] = student.orders.subject2
+      let result = _(jsonData)
+        .map(student => {
+          student['subject1'] = student.offers.subject1
+          student['subject2'] = student.offers.subject2
+          student['orderInSubject1'] = student.orders.subject1
+          student['orderInSubject2'] = student.orders.subject2
 
-        return _(combination).map(comb => {
-          comb.priorities = student.priorities.indexOf(comb.id)
-          return comb
+          return _(combination)
+            .map(comb => {
+              comb.priorities = student.priorities.indexOf(comb.id)
+              return comb
+            })
+            .keyBy(obj => obj.subjects.join('+'))
+            .mapValues('priorities')
+            .assign(student)
+            .omit('priorities')
+            .omit('offers')
+            .omit('orders')
+            .value()
         })
-          .keyBy(obj => obj.subjects.join('+'))
-          .mapValues('priorities')
-          .assign(student)
-          .omit('priorities')
-          .omit('offers')
-          .omit('orders')
-          .value()
-      }).value()
+        .value()
 
       let csv = Papa.unparse({
         data: result,

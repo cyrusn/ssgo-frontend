@@ -1,73 +1,93 @@
- [{
-   "code": "bafs",
-   "group": 1,
-   "name": "Business, Accounting and Financial Studies",
-   "cname": "企業、會計與財務概論",
-   "slug":"企會財"
- }, {
-   "code": "bio",
-   "group": 1,
-   "name": "Biology",
-   "cname": "生物",
-   "slug":"生物"
- }, {
-   "code": "chem",
-   "group": 2,
-   "name": "Chemistry",
-   "cname": "化學",
-   "slug":"化學"
- }, {
-   "code": "chist",
-   "group": 1,
-   "name": "Chinese History",
-   "cname": "中國歷史",
-   "slug":"中史"
- }, {
-   "code": "cscb",
-   "group": 2,
-   "name": "Combine Science (Chemistry / Biology)",
-   "cname": "組合科學 (化學 / 生物)",
-   "slug":"組合"
- }, {
-   "code": "econ",
-   "group": 2,
-   "name": "Economics",
-   "cname": "經濟",
-   "slug":"經濟"
- }, {
-   "code": "geog",
-   "group": 2,
-   "name": "Geography",
-   "cname": "地理",
-   "slug":"地理"
- }, {
-   "code": "hist",
-   "group": 2,
-   "name": "History",
-   "cname": "歷史",
-   "slug":"歷史"
- }, {
-   "code": "ict",
-   "group": 2,
-   "name": "Information and Communication Technology",
-   "cname": "資訊及通訊科技",
-   "slug":"資訊"
- }, {
-   "code": "phy",
-   "group": 1,
-   "name": "Physics",
-   "cname": "物理",
-   "slug":"物理"
- }, {
-   "code": "ths",
-   "group": 1,
-   "name": "Tourism and Hospitality Studies",
-   "cname": "旅遊與款待",
-   "slug":"旅遊"
- }, {
-   "code": "va",
-   "group": 1,
-   "name": "Visual Arts",
-   "cname": "視覺藝術",
-   "slug":"視藝"
- }]
+[
+  {
+    "code": "bafs",
+    "group": 1,
+    "name": "Business, Accounting and Financial Studies",
+    "cname": "企業、會計與財務概論",
+    "slug": "企會財"
+  },
+  {
+    "code": "bio",
+    "group": 1,
+    "name": "Biology",
+    "cname": "生物",
+    "slug": "生物"
+  },
+  {
+    "code": "chem",
+    "group": 2,
+    "name": "Chemistry",
+    "cname": "化學",
+    "slug": "化學"
+  },
+  {
+    "code": "chist",
+    "group": 1,
+    "name": "Chinese History",
+    "cname": "中國歷史",
+    "slug": "中史"
+  },
+  {
+    "code": "cscb",
+    "group": 2,
+    "name": "Combine Science (Chemistry / Biology)",
+    "cname": "組合科學 (化學 / 生物)",
+    "slug": "組合"
+  },
+  {
+    "code": "econ",
+    "group": 2,
+    "name": "Economics",
+    "cname": "經濟",
+    "slug": "經濟"
+  },
+  {
+    "code": "geog",
+    "group": 2,
+    "name": "Geography",
+    "cname": "地理",
+    "slug": "地理"
+  },
+  {
+    "code": "hist",
+    "group": 2,
+    "name": "History",
+    "cname": "歷史",
+    "slug": "歷史"
+  },
+  {
+    "code": "ict",
+    "group": 2,
+    "name": "Information and Communication Technology",
+    "cname": "資訊及通訊科技",
+    "slug": "資訊"
+  },
+  {
+    "code": "phy",
+    "group": 1,
+    "name": "Physics",
+    "cname": "物理",
+    "slug": "物理"
+  },
+  {
+    "code": "ths",
+    "group": 1,
+    "name": "Tourism and Hospitality Studies",
+    "cname": "旅遊與款待",
+    "slug": "旅遊"
+  },
+  {
+    "code": "va",
+    "group": 1,
+    "name": "Visual Arts",
+    "cname": "視覺藝術",
+    "slug": "視藝"
+  },
+  {
+    "code": "hmsc",
+    "group": 2,
+    "name": "Health Management and Social Care",
+    "cname": "健康管理與社會關懷",
+    "slug": "健管"
+  }
+]

@@ -1,16 +1,9 @@
 <template>
-  <input
-  type="text"
-  class="form-control"
-  v-model.number="capacity"
-  />
+  <input type="text" class="form-control" v-model.number="capacity">
 </template>
 
 <script>
-import {
-  mapState,
-  mapActions
-} from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 import _ from 'lodash'
 
@@ -28,13 +21,14 @@ export default {
     ...mapState('subject', ['capacities']),
     capacity: {
       get () {
-        const {capacities, code} = this
+        const { capacities, code } = this
         return capacities[code]
       },
       set (newValue) {
-        const {code, updateCapacity} = this
+        const { code, updateCapacity } = this
         updateCapacity({
-          code, capacity: newValue
+          code,
+          capacity: newValue
         })
       }
     }

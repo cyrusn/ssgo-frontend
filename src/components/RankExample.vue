@@ -2,7 +2,7 @@
   <div>
     <div id="exampleRank" class="form-group mt-1 collapse">
       <div class="alert alert-info">Example</div>
-      <textarea rows=7 class="form-control" v-model='example' disabled></textarea>
+      <textarea rows="7" class="form-control" v-model="example" disabled></textarea>
     </div>
   </div>
 </template>

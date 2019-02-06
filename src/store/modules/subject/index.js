@@ -1,5 +1,5 @@
 // subject modules handle all events about subject / subjects
-import {checkError, alertMessage} from '@/store/helpers'
+import { checkError, alertMessage } from '@/store/helpers'
 import _ from 'lodash'
 
 export default {
@@ -15,6 +15,7 @@ export default {
       chem: 0,
       cscb: 0,
       econ: 0,
+      hsmc: 0,
       hist: 0,
       geog: 0,
       ict: 0
@@ -24,12 +25,12 @@ export default {
     updateCapacities (state, capacities) {
       state.capacities = Object.assign({}, capacities)
     },
-    updateCapacity (state, {code, capacity}) {
+    updateCapacity (state, { code, capacity }) {
       state.capacities[code] = capacity
     }
   },
   actions: {
-    list ({commit, rootState}) {
+    list ({ commit, rootState }) {
       fetch('./api/subjects', {
         method: 'GET',
         headers: { jwt: rootState.jwt }
@@ -46,7 +47,7 @@ export default {
         .then(capacities => commit('updateCapacities', capacities))
         .catch(alertMessage)
     },
-    updateCapacity ({commit, rootState, dispatch}, {code, capacity}) {
+    updateCapacity ({ commit, rootState, dispatch }, { code, capacity }) {
       if (_.isInteger(capacity)) {
         fetch(`./api/subject/${code}/capacity/${capacity}`, {
           method: 'PUT',

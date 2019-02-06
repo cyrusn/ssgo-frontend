@@ -1,24 +1,22 @@
 <template>
   <div>
-    <div class="alert alert-success">
-      已遞交選科資料及已上載級名次人數：{{filterdStudents.length}}
-    </div>
-    <div class="alert alert-info">
-      獲分發選修科人數：{{allocationResults.length}}
-    </div>
+    <div class="alert alert-success">已遞交選科資料及已上載級名次人數：{{filterdStudents.length}}</div>
+    <div class="alert alert-info">獲分發選修科人數：{{allocationResults.length}}</div>
     <div class="alert alert-warning">
       <h6>已滿額選修科目</h6>
-      <span v-for='s in occupiedSubjects' :key='s.id' class="badge badge-warning mr-1">
-        {{findSubject(s).slug}}
-      </span>
+      <span
+        v-for="s in occupiedSubjects"
+        :key="s.id"
+        class="badge badge-warning mr-1"
+      >{{findSubject(s).slug}}</span>
     </div>
-    <subject-occupied-counters :counters='counters' />
-    <download-results-button-group :results='allocationResults'/>
+    <subject-occupied-counters :counters="counters"/>
+    <download-results-button-group :results="allocationResults"/>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex'
 import _ from 'lodash'
 import combinations from '@/data/combination'
 import subjects from '@/data/subject'
@@ -36,13 +34,15 @@ const defaultCounters = {
   cscb: 0,
   econ: 0,
   geog: 0,
+  hsmc: 0,
   hist: 0,
   ict: 0
 }
 
 export default {
   components: {
-    SubjectOccupiedCounters, DownloadResultsButtonGroup
+    SubjectOccupiedCounters,
+    DownloadResultsButtonGroup
   },
   data () {
     return {
@@ -54,11 +54,16 @@ export default {
     ...mapState('students', ['students']),
     ...mapState('subject', ['capacities']),
     filterdStudents () {
-      const {filter, students} = this
+      const { filter, students } = this
       return filter(students)
     },
     allocationResults () {
-      const {resetCounters, allocate, filterdStudents, resetOccupiedSubjects} = this
+      const {
+        resetCounters,
+        allocate,
+        filterdStudents,
+        resetOccupiedSubjects
+      } = this
       resetOccupiedSubjects()
       resetCounters()
       const allocatedStudents = allocate(filterdStudents)
@@ -67,18 +72,18 @@ export default {
   },
   methods: {
     findSubject (code) {
-      return _.find(subjects, {code})
+      return _.find(subjects, { code })
     },
     resetOccupiedSubjects () {
       this.occupiedSubjects = []
     },
     pushOccupiedSubjects (id) {
-      const {occupiedSubjects} = this
+      const { occupiedSubjects } = this
       if (_.includes(occupiedSubjects, id)) return
       occupiedSubjects.push(id)
     },
     updateOccupiedSubjects () {
-      const {capacities, pushOccupiedSubjects} = this
+      const { capacities, pushOccupiedSubjects } = this
       _.forOwn(this.counters, (v, k) => {
         if (v === capacities[k]) {
           pushOccupiedSubjects(k)
@@ -92,10 +97,10 @@ export default {
       this.counters[code] += 1
     },
     getSubjectCodes (id) {
-      return _.find(combinations, {id}).subjects
+      return _.find(combinations, { id }).subjects
     },
     isAvailable (id) {
-      const {getSubjectCodes, counters, capacities} = this
+      const { getSubjectCodes, counters, capacities } = this
       const codes = getSubjectCodes(id)
       const subject1 = codes[0]
       const subject2 = codes[1]
@@ -108,7 +113,13 @@ export default {
       let offers
       let orders
       let preference
-      const {isAvailable, getSubjectCodes, updateCounter, counters, updateOccupiedSubjects} = this
+      const {
+        isAvailable,
+        getSubjectCodes,
+        updateCounter,
+        counters,
+        updateOccupiedSubjects
+      } = this
 
       _.forEach(priorities, (id, i) => {
         if (isAvailable(id)) {
@@ -120,7 +131,7 @@ export default {
             ['subject1', 'subject2'],
             codes.map(code => counters[code])
           )
-          preference = (i + 1)
+          preference = i + 1
           // break lodash forEach loop
           return false
         }
@@ -134,14 +145,14 @@ export default {
     },
     filter (students) {
       return _(students)
-        .filter({'isConfirmed': true})
+        .filter({ isConfirmed: true })
         .filter(s => s.priorities.length === combinations.length)
         .filter(s => s.rank > 0)
         .orderBy('rank')
         .value()
     },
     allocate (students) {
-      const {makeOffers} = this
+      const { makeOffers } = this
       return _(students)
         .map(s => Object.assign({}, s, makeOffers(s.priorities)))
         .orderBy(['classcode', 'classno'])
