@@ -28,7 +28,7 @@
             type="button"
             class="btn"
             :class="
-            s.isConfirmed ? 'btn-secondary' : 'btn-danger'
+            s.isConfirmed ? 'btn-success' : 'btn-danger'
           "
             @click="setIsConfirmed({
               'userAlias': s.userAlias, 'isconfirmed': !s.isConfirmed
@@ -37,7 +37,7 @@
         </td>
         <td
           v-if="role==='ADMIN'"
-          :class="{'text-danger': s.rank === 0}"
+          :class="s.rank === 0 ? 'text-danger' :'text-success'"
         >{{s.rank === 0 ? '尚未提供' : s.rank}}</td>
       </tr>
     </tbody>
