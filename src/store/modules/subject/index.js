@@ -5,6 +5,21 @@ import _ from 'lodash'
 export default {
   namespaced: true,
   state: {
+    'highlightedSubjects': {
+      phy: false,
+      bio: false,
+      bafs: false,
+      chist: false,
+      ths: false,
+      va: false,
+      chem: false,
+      cscb: false,
+      econ: false,
+      hmsc: false,
+      hist: false,
+      geog: false,
+      ict: false
+    },
     'capacities': {
       phy: 0,
       bio: 0,
@@ -15,7 +30,7 @@ export default {
       chem: 0,
       cscb: 0,
       econ: 0,
-      hsmc: 0,
+      hmsc: 0,
       hist: 0,
       geog: 0,
       ict: 0
@@ -27,6 +42,9 @@ export default {
     },
     updateCapacity (state, { code, capacity }) {
       state.capacities[code] = capacity
+    },
+    toggleHighlightedSubject (state, subject) {
+      state.highlightedSubjects[subject] = !state.highlightedSubjects[subject]
     }
   },
   actions: {

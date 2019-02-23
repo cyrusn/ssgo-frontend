@@ -17,10 +17,11 @@
           <button
             type="button"
             class="btn"
-            :class="color"
             :disabled="!movable"
             v-for="s in e.subjects"
+            :class="highlightedSubjects[s] ? 'btn-warning' : color"
             :key="s.id"
+            @click="toggleHighlightedSubject(s)"
             style="width: 37.5%"
             data-toggle="tooltip"
             data-placement="top"
@@ -36,12 +37,13 @@
 import draggable from 'vuedraggable'
 import subjects from '@/data/subject'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapState, mapMutations } from 'vuex'
 import _ from 'lodash'
 
 export default {
   props: ['list', 'color', 'name', 'movable'],
   computed: {
+    ...mapState('subject', ['highlightedSubjects']),
     listContents: {
       get () {
         return this.list
@@ -57,6 +59,7 @@ export default {
     draggable
   },
   methods: {
+    ...mapMutations('subject', ['toggleHighlightedSubject']),
     ...mapActions('student', ['updatePriorities']),
     getSubject (code) {
       return _.find(subjects, { code })
