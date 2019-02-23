@@ -73,49 +73,49 @@
     "id": 10,
     "subjects": [
       "bafs",
-      "hist"
+      "hmsc"
     ]
   },
   {
     "id": 11,
     "subjects": [
       "bafs",
-      "ict"
+      "hist"
     ]
   },
   {
     "id": 12,
     "subjects": [
-      "chist",
-      "chem"
+      "bafs",
+      "ict"
     ]
   },
   {
     "id": 13,
     "subjects": [
       "chist",
-      "cscb"
+      "chem"
     ]
   },
   {
     "id": 14,
     "subjects": [
       "chist",
-      "econ"
+      "cscb"
     ]
   },
   {
     "id": 15,
     "subjects": [
       "chist",
-      "geog"
+      "econ"
     ]
   },
   {
     "id": 16,
     "subjects": [
-      "bafs",
-      "hmsc"
+      "chist",
+      "geog"
     ]
   },
   {

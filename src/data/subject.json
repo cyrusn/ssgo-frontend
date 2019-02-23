@@ -1,17 +1,17 @@
 [
   {
-    "code": "bafs",
-    "group": 1,
-    "name": "Business, Accounting and Financial Studies",
-    "cname": "企業、會計與財務概論",
-    "slug": "企會財"
-  },
-  {
     "code": "bio",
     "group": 1,
     "name": "Biology",
     "cname": "生物",
     "slug": "生物"
+  },
+  {
+    "code": "bafs",
+    "group": 1,
+    "name": "Business, Accounting and Financial Studies",
+    "cname": "企業、會計與財務概論",
+    "slug": "企會財"
   },
   {
     "code": "chem",
@@ -49,6 +49,13 @@
     "slug": "地理"
   },
   {
+    "code": "hmsc",
+    "group": 2,
+    "name": "Health Management and Social Care",
+    "cname": "健康管理與社會關懷",
+    "slug": "健管"
+  },
+  {
     "code": "hist",
     "group": 2,
     "name": "History",
@@ -82,12 +89,5 @@
     "name": "Visual Arts",
     "cname": "視覺藝術",
     "slug": "視藝"
-  },
-  {
-    "code": "hmsc",
-    "group": 2,
-    "name": "Health Management and Social Care",
-    "cname": "健康管理與社會關懷",
-    "slug": "健管"
   }
 ]
