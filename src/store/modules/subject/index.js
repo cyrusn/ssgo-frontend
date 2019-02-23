@@ -65,7 +65,7 @@ export default {
         .then(capacities => commit('updateCapacities', capacities))
         .catch(alertMessage)
     },
-    updateCapacity ({ commit, rootState, dispatch }, { code, capacity }) {
+    updateCapacity ({ rootState, dispatch }, { code, capacity }) {
       if (_.isInteger(capacity)) {
         fetch(`./api/subject/${code}/capacity/${capacity}`, {
           method: 'PUT',

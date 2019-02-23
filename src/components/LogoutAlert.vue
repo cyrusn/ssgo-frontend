@@ -49,9 +49,8 @@ export default {
     ...mapGetters(['expireAt']),
     modalContent () {
       const { expireAt } = this
-      return `系統將於${new Date(
-        expireAt
-      ).toLocaleTimeString()}登出，請按確定取消登出。`
+      const expireDateString = new Date(expireAt).toLocaleTimeString()
+      return `系統將於${expireDateString}登出，請按確定取消登出。`
     }
   },
   methods: {
