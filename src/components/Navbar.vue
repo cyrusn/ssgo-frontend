@@ -31,7 +31,7 @@
 </template>
 
 <script>
-/* global $ */
+import $ from 'jquery'
 import _ from 'lodash'
 
 import teachers from '@/data/teacher'

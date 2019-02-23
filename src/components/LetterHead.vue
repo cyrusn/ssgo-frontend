@@ -11,7 +11,7 @@
       </div>
 
       <div class="col-4 text-center">
-        <img src="img/logo.png" style="width: 80px">
+        <img :src="require('@/assets/logo.png')" style="width: 80px">
       </div>
 
       <div class="col-4 text-center">

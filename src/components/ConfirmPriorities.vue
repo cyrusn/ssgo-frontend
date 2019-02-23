@@ -52,7 +52,7 @@
 </template>
 
 <script>
-/* global $ */
+import $ from 'jquery'
 import combinations from '@/data/combination'
 import { mapState, mapGetters, mapActions } from 'vuex'
 export default {

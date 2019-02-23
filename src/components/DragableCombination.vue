@@ -6,12 +6,16 @@
       :options="{group:'subject'}"
       :move="() => movable"
     >
-      <div v-for="(e, n) in list" :key="e.id" class="draggable col-xl-2 col-md-4 col-6 my-1">
+      <div v-for="(e, n) in list" :key="e.id" class="draggable col-xl-2 col-md-4 col-6 my-1 px-1">
         <div class="btn-group btn-group-sm w-100">
-          <button type="button" class="btn" :class="color" style="width: 25%" :disabled="!movable">
-            <span v-if="name === 'available'">
-              <i class="fas fa-arrows-alt mr-2"></i>
-            </span>
+          <button
+            type="button"
+            class="btn"
+            :class="color"
+            style="max-width: 30%"
+            :disabled="!movable"
+          >
+            <font-awesome-icon icon="arrows-alt" v-if="name === 'available'"/>
             <span v-else class="badge badge-light badge-pill">{{n+1}}</span>
           </button>
           <button
@@ -22,7 +26,7 @@
             :class="highlightedSubjects[s] ? 'btn-warning' : color"
             :key="s.id"
             @click="toggleHighlightedSubject(s)"
-            style="width: 37.5%"
+            style="max-width: 45%"
             data-toggle="tooltip"
             data-placement="top"
             :title="getSubject(s).cname"

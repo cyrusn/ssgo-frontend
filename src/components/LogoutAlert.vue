@@ -28,7 +28,7 @@
 </template>
 
 <script>
-/* global $ */
+import $ from 'jquery'
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { warningTime } from '@/config.js'
 
