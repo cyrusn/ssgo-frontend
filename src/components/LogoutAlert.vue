@@ -30,7 +30,7 @@
 <script>
 /* global $ */
 import { mapState, mapGetters, mapActions } from 'vuex'
-import { warningTime } from '@/config'
+import { warningTime } from '@/config.js'
 
 export default {
   data () {
