@@ -2,6 +2,7 @@
   <div>
     <instruction v-if="!isConfirmed"/>
     <confirm-priorities/>
+    <highlight-button-group/>
     <div class="card" v-if="!isConfirmed">
       <h5 class="card-header bg-light">可供選擇的科目組合</h5>
       <dragable-combination
@@ -31,6 +32,7 @@
 import DragableCombination from '@/components/DragableCombination'
 import ConfirmPriorities from '@/components/ConfirmPriorities'
 import Instruction from '@/components/Instruction'
+import HighlightButtonGroup from '@/components/HighlightButtonGroup'
 import combinations from '@/data/combination'
 
 import _ from 'lodash'
@@ -40,7 +42,8 @@ export default {
   components: {
     DragableCombination,
     ConfirmPriorities,
-    Instruction
+    Instruction,
+    HighlightButtonGroup
   },
   computed: {
     ...mapState('student', ['priorities', 'isConfirmed']),
