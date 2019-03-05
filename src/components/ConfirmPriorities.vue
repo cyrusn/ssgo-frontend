@@ -29,12 +29,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>
-              是否確定？確定遞交後，同學一概
-              <b>
-                <u>不得</u>
-              </b>更改選科排序。
-            </p>
+            <div v-html="warningMessage"></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -55,11 +50,19 @@
 import $ from 'jquery'
 import combinations from '@/data/combination'
 import { mapState, mapGetters, mapActions } from 'vuex'
+
 export default {
   created () {
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
+  },
+  data () {
+    return {
+      warningMessage: `<p>
+          是否確定？確定遞交後，同學一概<u><b>不得</b></u>更改選科排序。
+        </p>`
+    }
   },
   computed: {
     ...mapState('student', ['priorities', 'isConfirmed']),
