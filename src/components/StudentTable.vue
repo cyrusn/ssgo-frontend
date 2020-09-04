@@ -36,7 +36,9 @@
             })"
           >{{s.isConfirmed ? '已確定' : '尚未確定'}}</button>
         </td>
-        <td>{{s.timestamp.Valid ? new Date(s.timestamp.Time).toLocaleString() : "" }}</td>
+        <td>
+          <formatted-datetime v-if='s.timestamp.Valid' :datetime='s.timestamp.Time' format='LLLL' />
+        </td>
         <td
           v-if="role==='ADMIN'"
           :class="s.rank === 0 ? 'text-danger' :'text-success'"
@@ -48,9 +50,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import FormattedDatetime from '@/components/FormattedDatetime'
 
 export default {
   props: ['list'],
+  components: {FormattedDatetime},
   computed: {
     ...mapGetters(['role'])
   },

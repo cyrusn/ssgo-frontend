@@ -7,7 +7,8 @@ export default {
   namespaced: true,
   state: {
     'priorities': [],
-    'isConfirmed': false
+    'isConfirmed': false,
+    'timestamp': null
   },
   mutations: {
     updatePriorities (state, priorities) {
@@ -15,6 +16,9 @@ export default {
     },
     updateIsConfirmed (state, isConfirmed) {
       state.isConfirmed = isConfirmed
+    },
+    updateTimestamp (state, timestamp) {
+      state.timestamp = timestamp
     }
   },
   actions: {
@@ -28,6 +32,7 @@ export default {
         .then(json => {
           commit('updatePriorities', json.priorities)
           commit('updateIsConfirmed', json.isConfirmed)
+          commit('updateTimestamp', json.timestamp)
         })
         .catch(alertMessage)
     },

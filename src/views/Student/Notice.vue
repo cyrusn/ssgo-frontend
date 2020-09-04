@@ -56,7 +56,7 @@
         <p class="text-justify">
           敬覆者：頃接
           <span class="single-space"/>
-          貴校{{formatDate(deliveryDate)}}來函，本人知悉有關{{isMock ? mockTitle : title}}事宜，以下為學生{{classcode}}班{{classno}}號{{cname}}之{{isMock ? '模擬' : ''}}選科表。{{ isMock ? null: '本人及敝子弟明白是次為正式選科，選科回條一經繳交，將不能更改志願。' }}
+          貴校{{formatDate(deliveryDate)}}來函，本人知悉有關{{isMock ? mockTitle : title}}事宜，並確認以下為敝子弟於<formatted-datetime :datetime='timestamp.Time' format='LLL' />確定之{{isMock ? '模擬' : ''}}選科表。{{ isMock ? null: '本人及敝子弟明白是次為正式選科，選科回條一經繳交，將不能更改志願。' }}
         </p>
       </div>
 
@@ -115,14 +115,15 @@
 </template>
 
 <script>
-import LetterHead from "@/components/LetterHead"
-import Formatter from "@/chineseDateFormatter"
-import DragableCombination from "@/components/DragableCombination"
-import Instruction from "@/components/Instruction"
-import combinations from "@/data/combination"
-import students from "@/data/student"
-import _ from "lodash"
-import { mapState, mapGetters } from "vuex"
+import LetterHead from '@/components/LetterHead'
+import DragableCombination from '@/components/DragableCombination'
+import Instruction from '@/components/Instruction'
+import combinations from '@/data/combination'
+import students from '@/data/student'
+import _ from 'lodash'
+import Formatter from '@/chineseDateFormatter'
+import FormattedDatetime from '@/components/FormattedDatetime'
+import { mapState, mapGetters } from 'vuex'
 
 import {
   noticeCode,
@@ -135,15 +136,16 @@ import {
   deliveryDate,
   deadline,
   returnYear
-} from "@/config.js"
+} from '@/config.js'
 
 export default {
   components: {
     LetterHead,
     DragableCombination,
-    Instruction
+    Instruction,
+    FormattedDatetime
   },
-  data() {
+  data () {
     return {
       noticeCode,
       isMock,
@@ -158,29 +160,29 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["userAlias"]),
-    ...mapState("student", ["priorities", "isConfirmed"]),
-    prioritisedCombinations() {
+    ...mapGetters(['userAlias']),
+    ...mapState('student', ['priorities', 'isConfirmed', 'timestamp']),
+    prioritisedCombinations () {
       const { priorities } = this
       return _.map(priorities, id => _.find(combinations, { id }))
     },
-    user() {
+    user () {
       const { userAlias } = this
       return _.find(students, { userAlias })
     },
-    classcode() {
+    classcode () {
       return this.user.classcode
     },
-    classno() {
+    classno () {
       return this.user.classno
     },
-    cname() {
+    cname () {
       return this.user.cname
     }
   },
   methods: {
-    formatDate(date, type) {
-      type = type || "simple"
+    formatDate (date, type) {
+      type = type || 'simple'
       return new Formatter(date)[type]
     }
   }

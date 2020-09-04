@@ -1,6 +1,6 @@
 {
   "name": "ssgo-frontend",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -17,7 +17,7 @@
     "i": "^0.3.6",
     "jquery": "^3.3.1",
     "lodash": "^4.17.11",
-    "moment": "^2.22.2",
+    "moment": "^2.27.0",
     "npm": "^6.8.0",
     "papaparse": "^4.6.0",
     "popper.js": "^1.14.7",
