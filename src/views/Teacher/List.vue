@@ -11,9 +11,9 @@
 
         <div class="col-auto">
           <select class="custom-select" v-model='isConfirmedFilter'>
-            <option value=''>篩選確認</option>
-            <option value='confirmed'>已確認</option>
-            <option value='unconfirmed'>尚未確認</option>
+            <option value=''>篩選確定</option>
+            <option value='confirmed'>已確定</option>
+            <option value='unconfirmed'>尚未確定</option>
           </select>
         </div>
         <download-list-button-group

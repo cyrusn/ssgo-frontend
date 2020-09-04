@@ -7,7 +7,8 @@
         <th>學號</th>
         <th>英文姓名</th>
         <th>中文姓名</th>
-        <th>已確認 ／ 尚未確認</th>
+        <th>已確定 ／ 尚未確定</th>
+        <th>確定時間</th>
         <th v-if="role==='ADMIN'">級名次</th>
       </tr>
     </thead>
@@ -22,7 +23,7 @@
           <span
             v-if="role === 'TEACHER'"
             :class="!s.isConfirmed ? 'text-danger': ''"
-          >{{s.isConfirmed ? '已確認' : '尚未確認'}}</span>
+          >{{s.isConfirmed ? '已確定' : '尚未確定'}}</span>
           <button
             v-else
             type="button"
@@ -33,8 +34,9 @@
             @click="setIsConfirmed({
               'userAlias': s.userAlias, 'isconfirmed': !s.isConfirmed
             })"
-          >{{s.isConfirmed ? '已確認' : '尚未確認'}}</button>
+          >{{s.isConfirmed ? '已確定' : '尚未確定'}}</button>
         </td>
+        <td>{{s.timestamp.Valid ? new Date(s.timestamp.Time).toLocaleString() : "" }}</td>
         <td
           v-if="role==='ADMIN'"
           :class="s.rank === 0 ? 'text-danger' :'text-success'"
