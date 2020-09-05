@@ -10,6 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faHourglass,
   faUser,
+  faSignInAlt,
   faSignOutAlt,
   faHeart,
   faPrint,
@@ -24,6 +25,7 @@ sync(store, router)
 library.add(
   faHourglass,
   faUser,
+  faSignInAlt,
   faSignOutAlt,
   faHeart,
   faPrint,

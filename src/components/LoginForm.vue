@@ -18,7 +18,7 @@
       <div class="form-group row justify-content-end">
         <div class="col-sm-10">
           <button type="button" class="btn btn-primary" @click="onLogin">
-            <i class="fas fa-sign-in-alt"></i> 登入
+            <font-awesome-icon icon="sign-in-alt" /> 登入
           </button>
         </div>
       </div>
