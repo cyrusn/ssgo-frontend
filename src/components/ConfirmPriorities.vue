@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!confirmable" class="alert alert-primary">尚未完成，同學必將所有選科組合排序。</div>
+    <div v-if="!confirmable" class="alert alert-primary">尚未完成，同學必須將所有選科組合排序。</div>
     <div v-else-if="!isConfirmed" class="alert alert-danger">尚未完成，請確定選科次序</div>
 
     <button

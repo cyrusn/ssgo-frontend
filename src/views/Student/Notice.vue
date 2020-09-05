@@ -22,7 +22,7 @@
 
         <p class="text-justify my-6">
           <span class="double-space"/>
-          學生必須於本校選科系統（https://careers.liping.edu.hk/ss）完成網上{{isMock ? '模擬' : null}}選科，確定選科意向後，將選科意向表列印並交家長簽署，並於{{formatDate(deadline)}}或之前交予班主任。{{isMock ? null: '是次為正式選科，選科回條一經繳交，將不能更改志願。'}}如有疑問，請向{{committeeInCharge}}{{pics[0]}}老師或{{pics[1]}}老師查詢。耑此
+          學生必須於本校選科系統（https://careers.liping.edu.hk/ss）完成網上{{isMock ? '模擬' : null}}選科，確定選科意向後，將選科意向表列印並交家長簽署，並於<formatted-datetime :datetime='deadline' format='L' />或之前交予班主任。{{isMock ? null: '是次為正式選科，選科回條一經繳交，將不能更改志願。'}}如有疑問，請向{{committeeInCharge}}{{pics[0]}}老師或{{pics[1]}}老師查詢。耑此
           <span
             class="single-space"
           />函達，敬希
@@ -43,7 +43,7 @@
         </div>
         <div class="text-left my-6">
           <br>
-          {{formatDate(deliveryDate, 'full')}}
+          <formatted-datetime :datetime='deliveryDate' format='LL' />
         </div>
       </div>
       <hr class="d-print-none">
@@ -56,7 +56,7 @@
         <p class="text-justify">
           敬覆者：頃接
           <span class="single-space"/>
-          貴校{{formatDate(deliveryDate)}}來函，本人知悉有關{{isMock ? mockTitle : title}}事宜，並確認以下為敝子弟於<formatted-datetime :datetime='timestamp.Time' format='LLL' />確定之{{isMock ? '模擬' : ''}}選科表。{{ isMock ? null: '本人及敝子弟明白是次為正式選科，選科回條一經繳交，將不能更改志願。' }}
+          貴校<formatted-datetime :datetime='deliveryDate' format='L' />來函，本人知悉有關{{isMock ? mockTitle : title}}事宜，並確認以下為敝子弟於<formatted-datetime :datetime='timestamp.Time' format='LLL' />確定之{{isMock ? '模擬' : ''}}選科表。{{ isMock ? null: '本人及敝子弟明白是次為正式選科，選科回條一經繳交，將不能更改志願。' }}
         </p>
       </div>
 
@@ -104,7 +104,7 @@
           </table>
         </div>
         <div class="text-left">
-          {{formatDate(returnYear, 'year')}}
+          <formatted-datetime :datetime='deadline' format='YYYY' />
           <span class="double-space">月</span>
           <span class="double-space">日</span>
         </div>
@@ -121,7 +121,7 @@ import Instruction from '@/components/Instruction'
 import combinations from '@/data/combination'
 import students from '@/data/student'
 import _ from 'lodash'
-import Formatter from '@/chineseDateFormatter'
+
 import FormattedDatetime from '@/components/FormattedDatetime'
 import { mapState, mapGetters } from 'vuex'
 
@@ -134,8 +134,7 @@ import {
   committeeWebsite,
   pics,
   deliveryDate,
-  deadline,
-  returnYear
+  deadline
 } from '@/config.js'
 
 export default {
@@ -155,8 +154,7 @@ export default {
       committeeWebsite,
       pics,
       deliveryDate,
-      deadline,
-      returnYear
+      deadline
     }
   },
   computed: {
@@ -178,12 +176,6 @@ export default {
     },
     cname () {
       return this.user.cname
-    }
-  },
-  methods: {
-    formatDate (date, type) {
-      type = type || 'simple'
-      return new Formatter(date)[type]
     }
   }
 }

@@ -10,7 +10,6 @@ const noticeCode = 'G123/2019-2020'
 const pics = ['許麗淳', '葉文駿']
 const committeeHead = '顏昭洋'
 const deliveryDate = '2020-06-17'
-const returnYear = '2020'
 const deadline = '2020-07-27'
 const isMock = false
 const serverBase = 'https://careers.liping.edu.hk/ss'
@@ -28,7 +27,6 @@ export {
   pics,
   committeeHead,
   deliveryDate,
-  returnYear,
   deadline,
   isMock,
   serverBase

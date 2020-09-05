@@ -7,22 +7,20 @@
 
     <div class="collapse navbar-collapse" id="navbar" v-if="userAlias">
       <ul class="navbar-nav mr-auto">
-        <router-list-link v-for="n in Navs" :key="n.id" :name="n.name">
-          <span v-html="n.content"></span>
+        <router-list-link v-for="n in Navs" :name="n.name" :key="n.id">
+          <font-awesome-icon :icon="n.icon" /> {{n.content}}
         </router-list-link>
-
         <li class="nav-item nav-link" @click="onLogout">
-          <i class="fas fa-sign-out-alt"></i> 登出
+          <font-awesome-icon icon="sign-out-alt" /> 登出
         </li>
       </ul>
       <div>
         <span class="navbar-text mr-2">
-          <i class="fas fa-user"></i>
+          <font-awesome-icon icon="user" />
           {{cname}}
         </span>
         <span class="navbar-text">
-          <i class="fas fa-hourglass"></i>
-          {{expireAtString}}
+          <font-awesome-icon icon="hourglass" />&nbsp;<formatted-datetime :datetime='expireAtString' format='llll' />
         </span>
       </div>
     </div>
@@ -39,6 +37,7 @@ import students from '@/data/student'
 
 import RouterListLink from '@/components/RouterListLink.vue'
 import LogoutAlert from '@/components/LogoutAlert'
+import FormattedDatetime from '@/components/FormattedDatetime'
 
 import { mapGetters } from 'vuex'
 
@@ -63,13 +62,14 @@ export default {
     }
   },
   components: {
+    FormattedDatetime,
     RouterListLink,
     LogoutAlert
   },
   computed: {
     ...mapGetters(['role', 'userAlias', 'expireAt']),
     expireAtString () {
-      return this.expireAt.toLocaleString('zh-HK', { hour12: false })
+      return this.expireAt
     },
     cname () {
       const { userAlias, role } = this
@@ -84,27 +84,32 @@ export default {
         {
           roles: ['STUDENT'],
           name: 'selection',
-          content: '<i class="fas fa-heart"></i> 選科'
+          icon: 'heart',
+          content: '選科'
         },
         {
           roles: ['STUDENT'],
           name: 'notice',
-          content: '<i class="fas fa-print"></i> 列印'
+          icon: 'print',
+          content: '列印'
         },
         {
           roles: ['TEACHER', 'ADMIN'],
           name: 'list',
-          content: '<i class="fas fa-list-alt"></i> 列表'
+          icon: 'list-alt',
+          content: '列表'
         },
         {
           roles: ['ADMIN'],
           name: 'rank',
-          content: '<i class="fas fa-trophy"></i> 名次'
+          icon: 'trophy',
+          content: '名次'
         },
         {
           roles: ['ADMIN'],
           name: 'allocation',
-          content: '<i class="fas fa-sitemap"></i> 分科'
+          icon: 'sitemap',
+          content: '分科'
         }
       ]
       return navs.filter(n => _.includes(n.roles, role))

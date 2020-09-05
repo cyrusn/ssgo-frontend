@@ -7,12 +7,30 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons'
+import {
+  faHourglass,
+  faUser,
+  faSignOutAlt,
+  faHeart,
+  faPrint,
+  faListAlt,
+  faTrophy,
+  faSitemap
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 sync(store, router)
 
-library.add(faArrowsAlt)
+library.add(
+  faHourglass,
+  faUser,
+  faSignOutAlt,
+  faHeart,
+  faPrint,
+  faListAlt,
+  faTrophy,
+  faSitemap
+)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false

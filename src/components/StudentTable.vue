@@ -37,7 +37,7 @@
           >{{s.isConfirmed ? '已確定' : '尚未確定'}}</button>
         </td>
         <td>
-          <formatted-datetime v-if='s.timestamp.Valid' :datetime='s.timestamp.Time' format='LLLL' />
+          <formatted-datetime v-if='s.timestamp.Valid' :datetime='s.timestamp.Time' format='llll' />
         </td>
         <td
           v-if="role==='ADMIN'"
