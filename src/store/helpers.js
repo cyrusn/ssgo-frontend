@@ -7,7 +7,7 @@ function checkError (res) {
 
 function alertMessage (res) {
   res.json().then(json => {
-    const {message} = json
+    const { message } = json
     if (message.toLowerCase() === 'token is expired') {
       window.location.reload(true)
       return
@@ -16,4 +16,4 @@ function alertMessage (res) {
   })
 }
 
-export {checkError, alertMessage}
+export { checkError, alertMessage }

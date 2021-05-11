@@ -9,40 +9,50 @@
         <th>中文姓名</th>
         <th>已確定 ／ 尚未確定</th>
         <th>確定時間</th>
-        <th v-if="role==='ADMIN'">級名次</th>
+        <th v-if="role === 'ADMIN'">級名次</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="s in list" :key="s.id">
-        <td>{{s.userAlias}}</td>
-        <td>{{s.classcode}}</td>
-        <td>{{s.classno}}</td>
-        <td>{{s.name}}</td>
-        <td>{{s.cname}}</td>
+        <td>{{ s.userAlias }}</td>
+        <td>{{ s.classcode }}</td>
+        <td>{{ s.classno }}</td>
+        <td>{{ s.name }}</td>
+        <td>{{ s.cname }}</td>
         <td>
           <span
             v-if="role === 'TEACHER'"
-            :class="!s.isConfirmed ? 'text-danger': ''"
-          >{{s.isConfirmed ? '已確定' : '尚未確定'}}</span>
+            :class="!s.isConfirmed ? 'text-danger' : ''"
+            >{{ s.isConfirmed ? '已確定' : '尚未確定' }}</span
+          >
           <button
             v-else
             type="button"
             class="btn"
-            :class="
-            s.isConfirmed ? 'btn-success' : 'btn-danger'
-          "
-            @click="setIsConfirmed({
-              'userAlias': s.userAlias, 'isconfirmed': !s.isConfirmed
-            })"
-          >{{s.isConfirmed ? '已確定' : '尚未確定'}}</button>
+            :class="s.isConfirmed ? 'btn-success' : 'btn-danger'"
+            @click="
+              setIsConfirmed({
+                userAlias: s.userAlias,
+                isconfirmed: !s.isConfirmed
+              })
+            "
+          >
+            {{ s.isConfirmed ? '已確定' : '尚未確定' }}
+          </button>
         </td>
         <td>
-          <formatted-datetime v-if='s.timestamp.Valid' :datetime='s.timestamp.Time' format='llll' />
+          <formatted-datetime
+            v-if="s.timestamp.Valid"
+            :datetime="s.timestamp.Time"
+            format="llll"
+          />
         </td>
         <td
-          v-if="role==='ADMIN'"
-          :class="s.rank === 0 ? 'text-danger' :'text-success'"
-        >{{s.rank === 0 ? '尚未提供' : s.rank}}</td>
+          v-if="role === 'ADMIN'"
+          :class="s.rank === 0 ? 'text-danger' : 'text-success'"
+        >
+          {{ s.rank === 0 ? '尚未提供' : s.rank }}
+        </td>
       </tr>
     </tbody>
   </table>
@@ -54,7 +64,7 @@ import FormattedDatetime from '@/components/FormattedDatetime'
 
 export default {
   props: ['list'],
-  components: {FormattedDatetime},
+  components: { FormattedDatetime },
   computed: {
     ...mapGetters(['role'])
   },

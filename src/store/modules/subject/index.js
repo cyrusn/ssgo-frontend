@@ -5,7 +5,7 @@ import _ from 'lodash'
 export default {
   namespaced: true,
   state: {
-    'highlightedSubjects': {
+    highlightedSubjects: {
       phy: false,
       bio: false,
       bafs: false,
@@ -20,7 +20,7 @@ export default {
       geog: false,
       ict: false
     },
-    'capacities': {
+    capacities: {
       phy: 0,
       bio: 0,
       bafs: 0,
@@ -56,7 +56,8 @@ export default {
         .then(checkError)
         .then(res => res.json())
         .then(json => {
-          return _(json).groupBy('code')
+          return _(json)
+            .groupBy('code')
             .mapValues(v => {
               return v[0].capacity
             })

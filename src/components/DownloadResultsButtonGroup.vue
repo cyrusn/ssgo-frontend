@@ -4,13 +4,17 @@
       type="button"
       class="btn btn-info"
       @click="onDownloadCSV(results, 'result', 'csv')"
-    >下載 CSV</button>
+    >
+      下載 CSV
+    </button>
 
     <button
       type="button"
       class="btn btn-warning"
       @click="onDownloadJSON(results, 'result', 'json')"
-    >下載 JSON</button>
+    >
+      下載 JSON
+    </button>
   </div>
 </template>
 
@@ -29,7 +33,7 @@ export default {
     onDownloadJSON,
     onDownloadCSV (jsonData, filename, extname) {
       // create headers fields
-      let fields = _(jsonData[0])
+      const fields = _(jsonData[0])
         .keys()
         .pull('priorities')
         .pull('offers')
@@ -42,12 +46,12 @@ export default {
 
       fields.push('subject1', 'subject2', 'orderInSubject1', 'orderInSubject2')
 
-      let result = _(jsonData)
+      const result = _(jsonData)
         .map(student => {
-          student['subject1'] = student.offers.subject1
-          student['subject2'] = student.offers.subject2
-          student['orderInSubject1'] = student.orders.subject1
-          student['orderInSubject2'] = student.orders.subject2
+          student.subject1 = student.offers.subject1
+          student.subject2 = student.offers.subject2
+          student.orderInSubject1 = student.orders.subject1
+          student.orderInSubject2 = student.orders.subject2
 
           return _(combination)
             .map(comb => {
@@ -64,7 +68,7 @@ export default {
         })
         .value()
 
-      let csv = Papa.unparse({
+      const csv = Papa.unparse({
         data: result,
         fields
       })

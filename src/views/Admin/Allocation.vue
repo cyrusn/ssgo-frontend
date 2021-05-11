@@ -2,16 +2,16 @@
   <div class="row mb-4">
     <div class="col-6 row">
       <div v-for="g in groups" :key="g.id" class="list-group col-6">
-        <h4 class="text-center">選修{{g}}組</h4>
-        <div v-for="s in subjects[g]" :key='s.id' class="list-group-item">
+        <h4 class="text-center">選修{{ g }}組</h4>
+        <div v-for="s in subjects[g]" :key="s.id" class="list-group-item">
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text">{{s.slug}} </span>
+              <span class="input-group-text">{{ s.slug }} </span>
             </div>
-            <input-capacity :code="s.code"/>
+            <input-capacity :code="s.code" />
           </div>
         </div>
-        <hr>
+        <hr />
       </div>
     </div>
     <div class="col-6">
@@ -25,7 +25,7 @@ import InputCapacity from '@/components/InputCapacity'
 import AllocationResult from '@/components/AllocationResult'
 import _ from 'lodash'
 
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import subjects from '@/data/subject'
 
 export default {
@@ -38,7 +38,8 @@ export default {
     }
   },
   components: {
-    InputCapacity, AllocationResult
+    InputCapacity,
+    AllocationResult
   },
   computed: {
     ...mapState('subject', ['capacities']),

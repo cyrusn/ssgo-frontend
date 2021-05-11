@@ -3,27 +3,27 @@
     <form>
       <div class="form-row align-items-center">
         <div class="col-auto">
-          <select class="custom-select" v-model='classcodeFilter'>
-            <option value=''>篩選班別</option>
-            <option v-for="c in clazzes" :key="c.id" :value='c'>{{c}}</option>
+          <select class="custom-select" v-model="classcodeFilter">
+            <option value="">篩選班別</option>
+            <option v-for="c in clazzes" :key="c.id" :value="c">{{ c }}</option>
           </select>
         </div>
 
         <div class="col-auto">
-          <select class="custom-select" v-model='isConfirmedFilter'>
-            <option value=''>篩選確定</option>
-            <option value='confirmed'>已確定</option>
-            <option value='unconfirmed'>尚未確定</option>
+          <select class="custom-select" v-model="isConfirmedFilter">
+            <option value="">篩選確定</option>
+            <option value="confirmed">已確定</option>
+            <option value="unconfirmed">尚未確定</option>
           </select>
         </div>
         <download-list-button-group
           :list="filteredStudents"
           :filename="filename"
-          :role='role'
+          :role="role"
         />
       </div>
     </form>
-    <student-table :list="filteredStudents"/>
+    <student-table :list="filteredStudents" />
   </div>
 </template>
 
@@ -32,11 +32,12 @@ import StudentTable from '@/components/StudentTable'
 import DownloadListButtonGroup from '@/components/DownloadListButtonGroup'
 
 import _ from 'lodash'
-import {mapState, mapGetters} from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   components: {
-    StudentTable, DownloadListButtonGroup
+    StudentTable,
+    DownloadListButtonGroup
   },
   data () {
     return {
@@ -48,14 +49,14 @@ export default {
   },
   computed: {
     filename () {
-      const {classcodeFilter, isConfirmedFilter} = this
+      const { classcodeFilter, isConfirmedFilter } = this
       const names = ['student', classcodeFilter, isConfirmedFilter]
       return _.compact(names).join('-')
     },
     ...mapState('students', ['students']),
     ...mapGetters(['role']),
     filteredStudents () {
-      const {students, classcodeFilter, isConfirmedFilter} = this
+      const { students, classcodeFilter, isConfirmedFilter } = this
       return _(students)
         .filter(s => {
           if (classcodeFilter) {

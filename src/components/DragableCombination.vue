@@ -3,10 +3,14 @@
     <draggable
       v-model="listContents"
       class="dragArea row py-1"
-      :options="{group:'subject'}"
+      :options="{ group: 'subject' }"
       :move="() => movable"
     >
-      <div v-for="(e, n) in list" :key="e.id" class="draggable col-xl-2 col-md-4 col-6 my-1 px-1">
+      <div
+        v-for="(e, n) in list"
+        :key="e.id"
+        class="draggable col-xl-2 col-md-4 col-6 my-1 px-1"
+      >
         <div class="btn-group btn-group-sm w-100">
           <button
             type="button"
@@ -15,8 +19,8 @@
             style="max-width: 30%"
             :disabled="!movable"
           >
-            <font-awesome-icon icon="arrows-alt" v-if="name === 'available'"/>
-            <span v-else class="badge badge-light badge-pill">{{n+1}}</span>
+            <font-awesome-icon icon="arrows-alt" v-if="name === 'available'" />
+            <span v-else class="badge badge-light badge-pill">{{ n + 1 }}</span>
           </button>
           <button
             type="button"
@@ -30,7 +34,9 @@
             data-toggle="tooltip"
             data-placement="top"
             :title="getSubject(s).cname"
-          >{{getSubject(s).slug}}</button>
+          >
+            {{ getSubject(s).slug }}
+          </button>
         </div>
       </div>
     </draggable>

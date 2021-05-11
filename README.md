@@ -1,7 +1,9 @@
 # ssgo-frontend
 
 # Features
+
 Once the program server started, STUDENT, TEACHER and ADMIN user can login to system.
+
 - STUDENT
   - prioritise their subject combinations.
   - confirm submission
@@ -15,7 +17,8 @@ Once the program server started, STUDENT, TEACHER and ADMIN user can login to sy
   - can allocate students preference if the above 2 informations are provided
 
 ### Schemas of `teacher.json` and `student.json`
-``` js
+
+```js
 // src/data/teacher.json
 [{
     "userAlias": String,
@@ -36,21 +39,25 @@ Once the program server started, STUDENT, TEACHER and ADMIN user can login to sy
 ```
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
 ### Lints and fixes files
+
 ```
 npm run lint
 ```

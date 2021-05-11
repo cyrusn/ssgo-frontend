@@ -1,5 +1,5 @@
 <template>
-  <span>{{formattedDatetime}}<span>
+  <span>{{ formattedDatetime }}</span>
 </template>
 
 <script>
@@ -33,20 +33,47 @@ moment.locale('zh-hk', {
   }
 })
 
-const ChineseNumbers = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
-const ChineseNumbersEmptyZero = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+const ChineseNumbers = [
+  '零',
+  '一',
+  '二',
+  '三',
+  '四',
+  '五',
+  '六',
+  '七',
+  '八',
+  '九'
+]
+const ChineseNumbersEmptyZero = [
+  '',
+  '一',
+  '二',
+  '三',
+  '四',
+  '五',
+  '六',
+  '七',
+  '八',
+  '九'
+]
 const CHINESE_TEN = '十'
 
 function cYear (year) {
-  return [].map.call(
-    year.toString(),
-    letter => ChineseNumbers[parseInt(letter, 10)]
-  ).join('') + '年'
+  return (
+    [].map
+      .call(year.toString(), letter => ChineseNumbers[parseInt(letter, 10)])
+      .join('') + '年'
+  )
 }
 
 function cMonth (month) {
   const unitsDigit = (month + 1) % 10
-  return ((month + 1) >= 10 ? CHINESE_TEN : '') + ChineseNumbersEmptyZero[unitsDigit] + '月'
+  return (
+    (month + 1 >= 10 ? CHINESE_TEN : '') +
+    ChineseNumbersEmptyZero[unitsDigit] +
+    '月'
+  )
 }
 
 function cDate (day) {
@@ -66,7 +93,7 @@ export default {
   props: ['datetime', 'format'],
   computed: {
     formattedDatetime () {
-      const {datetime, format} = this
+      const { datetime, format } = this
       const d = moment(datetime)
 
       switch (format) {
@@ -77,7 +104,9 @@ export default {
         case 'LLL':
           return `${cMonth(d.month())}${cDate(d.date())}${d.format('LT')}`
         case 'LLLL':
-          return `${cYear(d.year())}${cMonth(d.month())}${cDate(d.date())}${d.format('LTS')}`
+          return `${cYear(d.year())}${cMonth(d.month())}${cDate(
+            d.date()
+          )}${d.format('LTS')}`
         case 'YYYY':
           return `${cYear(d.year())}`
         default:

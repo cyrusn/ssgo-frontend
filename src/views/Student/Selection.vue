@@ -1,8 +1,8 @@
 <template>
   <div>
-    <instruction v-if="!isConfirmed"/>
-    <confirm-priorities/>
-    <highlight-button-group/>
+    <instruction v-if="!isConfirmed" />
+    <confirm-priorities />
+    <highlight-button-group />
     <div class="card" v-if="!isConfirmed">
       <h5 class="card-header bg-light">可供選擇的科目組合</h5>
       <dragable-combination
@@ -15,9 +15,12 @@
 
     <div class="card my-4">
       <h5 class="card-header">
-        {{isConfirmed ? "已確定的選科次序" : "已選擇的選科次序" }}
+        {{ isConfirmed ? '已確定的選科次序' : '已選擇的選科次序' }}
         <small v-if="isConfirmed">
-          （同學已於<formatted-datetime :datetime='timestamp.Time' format='llll' />確定選科次序）
+          （同學已於<formatted-datetime
+            :datetime="timestamp.Time"
+            format="llll"
+          />確定選科次序）
         </small>
         <small v-else>
           （請將以上選科項目拖到以下方格內，並按優次將選科意願排序。）
@@ -27,7 +30,7 @@
         :list="prioritisedCombinations"
         :movable="!isConfirmed"
         name="prioritised"
-        :color="isConfirmed? 'btn-success' : 'btn-danger' "
+        :color="isConfirmed ? 'btn-success' : 'btn-danger'"
       />
     </div>
   </div>

@@ -6,7 +6,7 @@ import student from '@/store/modules/student'
 import students from '@/store/modules/students'
 import subject from '@/store/modules/subject'
 
-import {checkError, alertMessage} from '@/store/helpers'
+import { checkError, alertMessage } from '@/store/helpers'
 import _ from 'lodash'
 
 Vue.use(Vuex)
@@ -24,13 +24,14 @@ export default new Vuex.Store({
     subject
   },
   state: {
-    'jwt': '',
-    'message': ''
+    jwt: '',
+    message: ''
   },
   getters: {
-    role: state => state.jwt ? parseJWT(state.jwt).Role : '',
-    userAlias: state => state.jwt ? parseJWT(state.jwt).UserAlias : '',
-    expireAt: state => state.jwt ? new Date(parseJWT(state.jwt).exp * 1000) : new Date()
+    role: state => (state.jwt ? parseJWT(state.jwt).Role : ''),
+    userAlias: state => (state.jwt ? parseJWT(state.jwt).UserAlias : ''),
+    expireAt: state =>
+      state.jwt ? new Date(parseJWT(state.jwt).exp * 1000) : new Date()
   },
   mutations: {
     updateJWT (state, jwt) {
@@ -41,10 +42,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    login ({commit, dispatch, getters}, {userAlias, password}) {
-      fetch(`./api/auth/login`, {
+    login ({ commit, dispatch, getters }, { userAlias, password }) {
+      fetch('./api/auth/login', {
         method: 'POST',
-        body: JSON.stringify({userAlias, password})
+        body: JSON.stringify({ userAlias, password })
       })
         .then(checkError)
         .then(res => res.text())
@@ -53,7 +54,7 @@ export default new Vuex.Store({
         })
         .then(text => commit('updateJWT', text))
         .then(() => {
-          const {role} = getters
+          const { role } = getters
           switch (true) {
             case role === 'STUDENT':
               dispatch('student/get')
@@ -65,8 +66,8 @@ export default new Vuex.Store({
         })
         .catch(alertMessage)
     },
-    refreshJWT ({state, commit}) {
-      fetch(`./api/auth/refresh/jwt`, {
+    refreshJWT ({ state, commit }) {
+      fetch('./api/auth/refresh/jwt', {
         method: 'GET',
         headers: { jwt: state.jwt }
       })

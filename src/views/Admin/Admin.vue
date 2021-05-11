@@ -9,7 +9,7 @@
 
 <script>
 import Forbidden from '@/components/Forbidden.vue'
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
