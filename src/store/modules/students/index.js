@@ -15,7 +15,6 @@ export default {
         'classcode': String,
         'classno': Number,
         'priorities': [Number],
-        'olePriorities': [Number],
         'isConfirmed': Boolean,
         'timestamp': Time
       */

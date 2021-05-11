@@ -7,16 +7,12 @@ export default {
   namespaced: true,
   state: {
     priorities: [],
-    olePriorities: [],
     isConfirmed: false,
     timestamp: null
   },
   mutations: {
     updatePriorities (state, priorities) {
       state.priorities = priorities
-    },
-    updateOlePriorities (state, olePriorities) {
-      state.olePriorities = olePriorities
     },
     updateIsConfirmed (state, isConfirmed) {
       state.isConfirmed = isConfirmed
@@ -56,22 +52,7 @@ export default {
         })
         .catch(alertMessage)
     },
-    updateOlePriorities (
-      { commit, rootState, rootGetters, dispatch },
-      olePriorities
-    ) {
-      commit('updateOlePriorities', olePriorities)
-      fetch(`./api/student/${rootGetters.userAlias}/ole_priorities`, {
-        method: 'PUT',
-        headers: { jwt: rootState.jwt },
-        body: JSON.stringify({ olePriorities })
-      })
-        .then(checkError)
-        .then(() => {
-          dispatch('get')
-        })
-        .catch(alertMessage)
-    },
+
     setIsConfirmed (
       { dispatch, rootState, rootGetters },
       { userAlias, isconfirmed }
