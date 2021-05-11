@@ -1,8 +1,12 @@
 <template>
   <div class="btn-group col-auto">
-    <button type="button" class="btn btn-info" @click="onDownloadCSV">下載 CSV</button>
+    <button type="button" class="btn btn-info" @click="onDownloadCSV">
+      下載 CSV
+    </button>
 
-    <button type="button" class="btn btn-warning" @click="onDownloadJSON">下載 JSON</button>
+    <button type="button" class="btn btn-warning" @click="onDownloadJSON">
+      下載 JSON
+    </button>
   </div>
 </template>
 
@@ -34,21 +38,24 @@ export default {
           downloadJSON([], filename, 'json')
       }
     },
-    createCSVData (json) {
-      return _(json)
-        .map(student => {
-          return _(combination)
-            .map(comb => {
-              comb.priorities = student.priorities.indexOf(comb.id)
-              return comb
-            })
-            .keyBy(obj => obj.subjects.join('+'))
-            .mapValues('priorities')
-            .assign(student)
-            .omit('priorities')
-            .value()
-        })
+    createCSVData (list) {
+      const csvJSON = _(list)
+        .mapValues(s => s.timestamp.Time)
+        // .map(student => {
+        //   return _(combination)
+        //     .map(comb => {
+        //       comb.priorities = student.priorities.indexOf(comb.id)
+        //       return comb
+        //     })
+        //     .keyBy(obj => obj.subjects.join('+'))
+        //     .mapValues('priorities')
+        //     .assign(student)
+        //     .omit('priorities')
+        //     .value()
+        // })
         .value()
+      console.log(csvJSON)
+      return csvJSON
     },
     onDownloadCSV () {
       const {
@@ -59,6 +66,11 @@ export default {
         filename
       } = this
       let csv
+      // create headers fields
+      const fields = _(list[0])
+        .keys()
+        .pull('priorities')
+        .value()
       switch (role) {
         case 'TEACHER':
           csv = Papa.unparse({
@@ -66,12 +78,6 @@ export default {
           })
           break
         case 'ADMIN':
-          // create headers fields
-          let fields = _(list[0])
-            .keys()
-            .pull('priorities')
-            .value()
-
           combination.forEach(comb => {
             fields.push(comb.subjects.join('+'))
           })

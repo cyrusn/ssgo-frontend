@@ -8,7 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
+  faArrowsAlt,
   faHourglass,
+  faLink,
   faUser,
   faSignInAlt,
   faSignOutAlt,
@@ -23,7 +25,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 sync(store, router)
 
 library.add(
+  faArrowsAlt,
   faHourglass,
+  faLink,
   faUser,
   faSignInAlt,
   faSignOutAlt,
