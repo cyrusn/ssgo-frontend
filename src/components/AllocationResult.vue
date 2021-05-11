@@ -36,7 +36,7 @@ const defaultCounters = {
   ths: 0,
   va: 0,
   chem: 0,
-  cscb: 0,
+  bio2: 0,
   econ: 0,
   geog: 0,
   hmsc: 0,

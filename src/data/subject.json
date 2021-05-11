@@ -28,11 +28,11 @@
     "slug": "中史"
   },
   {
-    "code": "cscb",
+    "code": "bio2",
     "group": 2,
-    "name": "Combine Science (Chemistry / Biology)",
-    "cname": "組合科學 (化學 / 生物)",
-    "slug": "組合"
+    "name": "Biology",
+    "cname": "生物",
+    "slug": "生物"
   },
   {
     "code": "econ",
