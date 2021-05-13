@@ -5,12 +5,12 @@ const mockTitle = '高中模擬選科'
 const schoolWebsite = 'https://liping.edu.hk'
 const committeeInCharge = '生涯規劃部'
 const committeeWebsite = 'https://careers.liping.edu.hk'
-const schoolYear = '2019-20'
-const noticeCode = 'G123/2019-2020'
+const schoolYear = '2020-21'
+const noticeCode = 'xxx/2020-2021'
 const pics = ['許麗淳', '葉文駿']
 const committeeHead = '顏昭洋'
-const deliveryDate = '2020-06-17'
-const deadline = '2020-07-27'
+const deliveryDate = '2021-06-28'
+const deadline = '2021-07-02'
 const isMock = false
 const serverBase = 'https://careers.liping.edu.hk/ss'
 
