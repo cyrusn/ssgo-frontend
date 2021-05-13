@@ -17,6 +17,9 @@ export default {
     updateIsConfirmed (state, isConfirmed) {
       state.isConfirmed = isConfirmed
     },
+    updateIs3X (state, is3X) {
+      state.is3X = is3X
+    },
     updateTimestamp (state, timestamp) {
       state.timestamp = timestamp
     }
@@ -52,7 +55,25 @@ export default {
         })
         .catch(alertMessage)
     },
-
+    setIsX3 ({ dispatch, rootState, rootGetters }, { userAlias, isX3 }) {
+      fetch(`./api/student/${userAlias}/isx3/${isX3}`, {
+        method: 'PUT',
+        headers: { jwt: rootState.jwt }
+      })
+        .then(checkError)
+        .then(() => {
+          const { role } = rootGetters
+          switch (true) {
+            case role === 'STUDENT':
+              dispatch('get')
+              break
+            case _.includes(['TEACHER', 'ADMIN'], role):
+              dispatch('students/get', null, { root: true })
+              break
+          }
+        })
+        .catch(alertMessage)
+    },
     setIsConfirmed (
       { dispatch, rootState, rootGetters },
       { userAlias, isconfirmed }

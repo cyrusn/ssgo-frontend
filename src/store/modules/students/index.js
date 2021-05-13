@@ -15,6 +15,7 @@ export default {
         'classcode': String,
         'classno': Number,
         'priorities': [Number],
+        'is3X': Boolean,
         'isConfirmed': Boolean,
         'timestamp': Time
       */
@@ -34,6 +35,7 @@ export default {
         .then(checkError)
         .then(res => res.json())
         .then(ss => {
+          // ss stands for students
           const list = _(ss)
             .map(s => {
               const { userAlias } = s

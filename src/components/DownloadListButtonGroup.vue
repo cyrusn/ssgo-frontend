@@ -40,21 +40,20 @@ export default {
     },
     createCSVData (list) {
       const csvJSON = _(list)
-        .mapValues(s => s.timestamp.Time)
-        // .map(student => {
-        //   return _(combination)
-        //     .map(comb => {
-        //       comb.priorities = student.priorities.indexOf(comb.id)
-        //       return comb
-        //     })
-        //     .keyBy(obj => obj.subjects.join('+'))
-        //     .mapValues('priorities')
-        //     .assign(student)
-        //     .omit('priorities')
-        //     .value()
-        // })
+        .map(student => {
+          student.timestamp = student.timestamp.Time
+          return _(combination)
+            .map(comb => {
+              comb.priorities = student.priorities.indexOf(comb.id)
+              return comb
+            })
+            .keyBy(obj => obj.subjects.join('+'))
+            .mapValues('priorities')
+            .assign(student)
+            .omit('priorities')
+            .value()
+        })
         .value()
-      console.log(csvJSON)
       return csvJSON
     },
     onDownloadCSV () {

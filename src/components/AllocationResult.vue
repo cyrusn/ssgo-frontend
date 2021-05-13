@@ -27,6 +27,7 @@ import combinations from '@/data/combination'
 import subjects from '@/data/subject'
 import SubjectOccupiedCounters from '@/components/SubjectOccupiedCounters'
 import DownloadResultsButtonGroup from '@/components/DownloadResultsButtonGroup'
+import { removeCombinationWithX3Subject } from '@/components/helpers'
 
 const defaultCounters = {
   bio: 0,
@@ -159,6 +160,14 @@ export default {
     allocate (students) {
       const { makeOffers } = this
       return _(students)
+        .map(s => {
+          if (!s.isX3) return s
+          const priorities = removeCombinationWithX3Subject(
+            s.priorities,
+            'hmsc'
+          )
+          return Object.assign({}, s, { priorities })
+        })
         .map(s => Object.assign({}, s, makeOffers(s.priorities)))
         .orderBy(['classcode', 'classno'])
         .value()

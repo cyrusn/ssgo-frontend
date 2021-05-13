@@ -3,7 +3,7 @@
     <draggable
       v-model="listContents"
       class="dragArea row py-1"
-      :options="{ group: 'subject' }"
+      group="subject"
       :move="() => movable"
     >
       <div

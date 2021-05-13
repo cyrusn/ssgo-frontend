@@ -16,6 +16,13 @@
             <option value="unconfirmed">尚未確定</option>
           </select>
         </div>
+        <div class="col-auto">
+          <select class="custom-select" v-model="isX3Filter">
+            <option value="">篩選3X</option>
+            <option value="x3">收讀</option>
+            <option value="notX3">不適用</option>
+          </select>
+        </div>
         <download-list-button-group
           :list="filteredStudents"
           :filename="filename"
@@ -44,7 +51,8 @@ export default {
       clazzes: ['3A', '3B', '3C', '3D', '3E'],
       filterType: 0,
       classcodeFilter: '',
-      isConfirmedFilter: ''
+      isConfirmedFilter: '',
+      isX3Filter: ''
     }
   },
   computed: {
@@ -56,7 +64,7 @@ export default {
     ...mapState('students', ['students']),
     ...mapGetters(['role']),
     filteredStudents () {
-      const { students, classcodeFilter, isConfirmedFilter } = this
+      const { students, classcodeFilter, isConfirmedFilter, isX3Filter } = this
       return _(students)
         .filter(s => {
           if (classcodeFilter) {
@@ -70,6 +78,16 @@ export default {
               return s.isConfirmed
             case 'unconfirmed':
               return !s.isConfirmed
+            default:
+              return true
+          }
+        })
+        .filter(s => {
+          switch (isX3Filter) {
+            case 'x3':
+              return s.isX3
+            case 'notX3':
+              return !s.isX3
             default:
               return true
           }

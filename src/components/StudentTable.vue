@@ -8,6 +8,7 @@
         <th>英文姓名</th>
         <th>中文姓名</th>
         <th>已確定 ／ 尚未確定</th>
+        <th>收讀X3</th>
         <th>確定時間</th>
         <th v-if="role === 'ADMIN'">級名次</th>
       </tr>
@@ -25,26 +26,40 @@
             :class="!s.isConfirmed ? 'text-danger' : ''"
             >{{ s.isConfirmed ? '已確定' : '尚未確定' }}</span
           >
-          <button
+          <input
             v-else
-            type="button"
-            class="btn"
-            :class="s.isConfirmed ? 'btn-success' : 'btn-danger'"
+            type="checkbox"
+            :checked="s.isConfirmed"
             @click="
               setIsConfirmed({
                 userAlias: s.userAlias,
                 isconfirmed: !s.isConfirmed
               })
             "
+          />
+          {{ s.isConfirmed ? '已確定' : '尚未確定' }}
+        </td>
+        <td>
+          <span
+            v-if="role === 'TEACHER'"
+            :class="!s.isX3 ? 'text-danger' : ''"
+            >{{ s.isX3 ? '收讀' : '不適用' }}</span
           >
-            {{ s.isConfirmed ? '已確定' : '尚未確定' }}
-          </button>
+          <input
+            v-else
+            type="checkbox"
+            class="btn"
+            :class="s.isX3 ? 'btn-success' : 'btn-danger'"
+            @click="setIsX3({ userAlias: s.userAlias, isX3: !s.isX3 })"
+            :checked="s.isX3"
+          />
+          {{ s.isX3 ? '收讀' : '不適用' }}
         </td>
         <td>
           <formatted-datetime
             v-if="s.timestamp.Valid"
             :datetime="s.timestamp.Time"
-            format="llll"
+            format="lll"
           />
         </td>
         <td
@@ -69,7 +84,7 @@ export default {
     ...mapGetters(['role'])
   },
   methods: {
-    ...mapActions('student', ['setIsConfirmed'])
+    ...mapActions('student', ['setIsConfirmed', 'setIsX3'])
   }
 }
 </script>

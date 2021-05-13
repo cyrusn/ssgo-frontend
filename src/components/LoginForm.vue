@@ -1,18 +1,33 @@
 <template>
   <div>
-    <h1 class="text-center">{{ isMock ? '高中模擬選科系統': '高中選科系統'}}</h1>
-    <hr>
-    <form class="col-lg-8 mx-auto justify-content-center" @keyup.enter="onLogin">
+    <h1 class="text-center">
+      {{ isMock ? '高中模擬選科系統' : '高中選科系統' }}
+    </h1>
+    <hr />
+    <form
+      class="col-lg-8 mx-auto justify-content-center"
+      @keyup.enter="onLogin"
+    >
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">登入編號</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" v-model="userAlias" autofocus>
+          <input
+            type="text"
+            class="form-control"
+            v-model="userAlias"
+            autofocus
+          />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">密碼</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" v-model="password">
+          <input
+            type="password"
+            class="form-control"
+            v-model="password"
+            autocomplete="on"
+          />
         </div>
       </div>
       <div class="form-group row justify-content-end">

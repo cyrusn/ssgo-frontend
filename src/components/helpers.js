@@ -1,4 +1,7 @@
 import moment from 'moment'
+import COMBINATION from '@/data/combination'
+import _ from 'lodash'
+
 export function createDownloadFile (data, filename, extname) {
   const blob = new Blob([data], {
     type: 'text/plain;charset=UTF-8'
@@ -16,4 +19,14 @@ export function createDownloadFile (data, filename, extname) {
 export function downloadJSON (json, filename, extname) {
   const jsonData = JSON.stringify(json)
   createDownloadFile(jsonData, filename, extname)
+}
+
+// removeCombinationWithX3Subject remove combination with X3 in priorities
+export function removeCombinationWithX3Subject (priorities, x3) {
+  const combinationWithX3 = _(COMBINATION)
+    .filter(comb => comb.subjects.includes(x3))
+    .map('id')
+    .value()
+
+  return _.difference(priorities, combinationWithX3)
 }
