@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "push": "scp -r ./dist root@calp:~/ssgo/"
+    "push": "vue-cli-service build && scp -r ./dist root@calp:~/ssgo/"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
