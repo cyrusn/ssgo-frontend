@@ -74,7 +74,6 @@ export default new Vuex.Store({
         .then(checkError)
         .then(res => res.text())
         .then(text => {
-          console.log(text)
           return text
         })
         .then(text => commit('updateJWT', text))
