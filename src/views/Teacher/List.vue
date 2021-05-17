@@ -1,23 +1,23 @@
 <template>
   <div>
     <form>
-      <div class="form-row align-items-center">
+      <div class="row g-1 align-items-center">
         <div class="col-auto">
-          <select class="custom-select" v-model="classcodeFilter">
+          <select class="form-select" v-model="classcodeFilter">
             <option value="">篩選班別</option>
             <option v-for="c in clazzes" :key="c.id" :value="c">{{ c }}</option>
           </select>
         </div>
 
         <div class="col-auto">
-          <select class="custom-select" v-model="isConfirmedFilter">
+          <select class="form-select" v-model="isConfirmedFilter">
             <option value="">篩選確定</option>
             <option value="confirmed">已確定</option>
             <option value="unconfirmed">尚未確定</option>
           </select>
         </div>
         <div class="col-auto">
-          <select class="custom-select" v-model="isX3Filter">
+          <select class="form-select" v-model="isX3Filter">
             <option value="">篩選3X</option>
             <option value="x3">收讀</option>
             <option value="notX3">不適用</option>

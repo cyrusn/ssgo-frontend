@@ -8,7 +8,7 @@
       class="col-lg-8 mx-auto justify-content-center"
       @keyup.enter="onLogin"
     >
-      <div class="form-group row">
+      <div class="form-group row mb-2">
         <label class="col-sm-2 col-form-label">登入編號</label>
         <div class="col-sm-10">
           <input
@@ -19,7 +19,7 @@
           />
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row mb-2">
         <label class="col-sm-2 col-form-label">密碼</label>
         <div class="col-sm-10">
           <input
@@ -52,8 +52,8 @@ export default {
   },
   data () {
     return {
-      userAlias: '',
-      password: '',
+      userAlias: 'lpdummy5',
+      password: 'no password',
       isMock
     }
   },

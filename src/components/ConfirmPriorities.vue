@@ -10,7 +10,7 @@
     <button
       v-if="!disabled"
       type="button"
-      class="btn mr-2 mb-2"
+      class="btn me-2 mb-2"
       :class="disabled ? 'btn-secondary' : 'btn-danger'"
       :disabled="disabled"
       @click="onClickConfirmButton"
@@ -35,7 +35,7 @@
             <button
               type="button"
               class="close"
-              data-dismiss="modal"
+              data-bs-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
@@ -48,7 +48,7 @@
             <button
               type="button"
               class="btn btn-secondary"
-              data-dismiss="modal"
+              data-bs-dismiss="modal"
             >
               取消
             </button>
@@ -68,16 +68,11 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import { Modal } from 'bootstrap'
 import combinations from '@/data/combination'
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
-  created () {
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-  },
   data () {
     return {
       warningMessage: `<p>
@@ -86,6 +81,10 @@ export default {
     }
   },
   computed: {
+    modal () {
+      const modalElement = document.getElementById('confirmPrioritiesModal')
+      return new Modal(modalElement)
+    },
     ...mapState('student', ['priorities', 'isConfirmed']),
     ...mapGetters(['userAlias']),
     disabled () {
@@ -102,10 +101,10 @@ export default {
       const { userAlias } = this
       const isconfirmed = true
       this.setIsConfirmed({ userAlias, isconfirmed })
-      $('#confirmPrioritiesModal').modal('hide')
+      this.modal.hide()
     },
     onClickConfirmButton () {
-      $('#confirmPrioritiesModal').modal('show')
+      this.modal.show()
     }
   }
 }

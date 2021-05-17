@@ -1,14 +1,14 @@
 <template>
   <div class="row">
     <div v-for="g in groups" :key="g.id" class="list-group col-6">
-      <h4 class="text-center">選修{{g}}組</h4>
+      <h4 class="text-center">選修{{ g }}組</h4>
       <div v-for="s in subjects[g]" :key="s.id" class="list-group-item">
-        {{s.slug}}
-        <span
-          class="float-right badge badge-secondary badge-pill"
-        >{{counters[s.code]}} / {{capacities[s.code]}}</span>
+        {{ s.slug }}
+        <span class="float-right badge bg-secondary rounded-pill"
+          >{{ counters[s.code] }} / {{ capacities[s.code] }}</span
+        >
       </div>
-      <hr>
+      <hr />
     </div>
   </div>
 </template>

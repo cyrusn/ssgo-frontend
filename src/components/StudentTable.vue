@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-hover mt-2">
+  <table class="table table-striped mt-2">
     <thead class="thead-light">
       <tr>
         <th>學生編號</th>

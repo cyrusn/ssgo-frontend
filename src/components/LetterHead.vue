@@ -19,7 +19,7 @@
         <small>新 界 荃 灣 和 宜 合 道 450 號</small>
       </div>
     </div>
-    <div class="mt-4 mr-4" style="font-size: larger">
+    <div class="mt-4 me-4" style="font-size: larger">
       <p class="text-right">通 告 編 號：{{ code }}</p>
     </div>
   </div>

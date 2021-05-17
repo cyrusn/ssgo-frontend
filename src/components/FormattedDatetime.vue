@@ -13,7 +13,7 @@ moment.locale('zh-hk', {
     lll: 'YYYY年M月D日Ah時m分',
     llll: 'YYYY年M月D日Ah時m分s秒'
   },
-  meridiem: function (hour, minute, isLower) {
+  meridiem: function (hour, minute) {
     const hm = hour * 100 + minute
     if (hm < 600) {
       return '凌晨'

@@ -19,7 +19,7 @@
         <textarea rows="5" class="form-control" v-model="csvData"></textarea>
       </div>
       <button
-        class="btn btn-info mr-2"
+        class="btn btn-info me-2"
         type="button"
         data-toggle="collapse"
         data-target="#exampleRank"

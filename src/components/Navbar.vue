@@ -1,30 +1,33 @@
 <template>
   <nav :class="navbarClass">
-    <a :class="navbarBrandClass" href="https://liping.edu.hk">聖公會李炳中學</a>
-    <button class="navbar-toggler" type="button" @click="onToggle">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
+      <a :class="navbarBrandClass" href="https://liping.edu.hk"
+        >聖公會李炳中學</a
+      >
+      <button class="navbar-toggler" type="button" @click="onToggle">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbar" v-if="userAlias">
-      <ul class="navbar-nav mr-auto">
-        <router-list-link v-for="n in Navs" :name="n.name" :key="n.id">
-          <font-awesome-icon :icon="n.icon" /> {{n.content}}
-        </router-list-link>
-        <li class="nav-item nav-link" @click="onLogout">
-          <font-awesome-icon icon="sign-out-alt" /> 登出
-        </li>
-      </ul>
-      <div>
-        <span class="navbar-text mr-2">
+      <div class="collapse navbar-collapse" id="navbar" v-if="userAlias">
+        <ul class="navbar-nav me-auto">
+          <router-list-link v-for="n in Navs" :name="n.name" :key="n.id">
+            <font-awesome-icon :icon="n.icon" /> {{ n.content }}
+          </router-list-link>
+          <li class="nav-item nav-link" @click="onLogout">
+            <font-awesome-icon icon="sign-out-alt" /> 登出
+          </li>
+        </ul>
+        <span class="navbar-text me-2">
           <font-awesome-icon icon="user" />
-          {{cname}}
-        </span>
-        <span class="navbar-text">
-          <font-awesome-icon icon="hourglass" />&nbsp;<formatted-datetime :datetime='expireAtString' format='llll' />
+          {{ cname }}
+          <font-awesome-icon icon="hourglass" />&nbsp;<formatted-datetime
+            :datetime="expireAtString"
+            format="llll"
+          />
         </span>
       </div>
+      <logout-alert />
     </div>
-    <logout-alert/>
   </nav>
 </template>
 
@@ -48,8 +51,6 @@ const navbarClass = [
   'bg-light',
   'px-lg-5',
   'text-secondary',
-  'd-flex',
-  'justify-content-between',
   'd-print-none'
 ]
 const navbarBrandClass = ['navbar-brand', 'text-secondary']

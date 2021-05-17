@@ -11,7 +11,7 @@
       <span
         v-for="s in occupiedSubjects"
         :key="s.id"
-        class="badge badge-warning mr-1"
+        class="badge bg-warning text-dark me-1"
         >{{ findSubject(s).slug }}</span
       >
     </div>
