@@ -1,9 +1,14 @@
 <template>
-  <router-link :to="{'name':name}" tag="li" class="nav-item">
-    <a class="nav-link" :class="{'active': route.name === name}">
+  <li class="nav-item">
+    <router-link
+      :to="{ name: name }"
+      tag="li"
+      class="nav-link"
+      :class="{ active: route.name === name }"
+    >
       <slot></slot>
-    </a>
-  </router-link>
+    </router-link>
+  </li>
 </template>
 
 <script>
