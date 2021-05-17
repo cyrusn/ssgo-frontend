@@ -1,15 +1,11 @@
 // root state handle event for auth and user information
-
-import Vue from 'vue'
-import Vuex from 'vuex'
 import student from '@/store/modules/student'
+import { createStore } from 'vuex'
 import students from '@/store/modules/students'
 import subject from '@/store/modules/subject'
 
 import { checkError, alertMessage } from '@/store/helpers'
 import _ from 'lodash'
-
-Vue.use(Vuex)
 
 function parseJWT (jwt) {
   const base64Url = jwt.split('.')[1]
@@ -17,7 +13,7 @@ function parseJWT (jwt) {
   return JSON.parse(atob(base64))
 }
 
-export default new Vuex.Store({
+export default createStore({
   modules: {
     student,
     students,

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Changed
+
+- updated to 2020-21 cohort
+- updated to vue3
+- updated to bootstrap5
+
 ## [v1.5.2] - 2021-05-15
 
 ### Fixed

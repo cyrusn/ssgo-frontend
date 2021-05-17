@@ -1,10 +1,10 @@
-import Vue from 'vue'
+import { createApp, h } from 'vue'
 import App from '@/App.vue'
-import router from '@/router'
+import { router } from '@/router'
 import store from '@/store'
 import { sync } from 'vuex-router-sync'
-import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -20,7 +20,6 @@ import {
   faTrophy,
   faSitemap
 } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 sync(store, router)
 
@@ -37,12 +36,15 @@ library.add(
   faTrophy,
   faSitemap
 )
-Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-Vue.config.productionTip = false
+const app = createApp({
+  render () {
+    return h(App)
+  }
+})
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+app.component('font-awesome-icon', FontAwesomeIcon)
+app.config.productionTip = false
+app.use(router)
+app.use(store)
+app.mount('#app')
