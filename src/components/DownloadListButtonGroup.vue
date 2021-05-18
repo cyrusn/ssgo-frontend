@@ -39,7 +39,8 @@ export default {
       }
     },
     createCSVData (list) {
-      const csvJSON = _(list)
+      const deepCloneData = _.cloneDeep(list)
+      const csvJSON = _(deepCloneData)
         .map(student => {
           student.timestamp = student.timestamp.Time
           return _(combination)

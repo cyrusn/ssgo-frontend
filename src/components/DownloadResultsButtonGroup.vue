@@ -33,7 +33,8 @@ export default {
     onDownloadJSON,
     onDownloadCSV (jsonData, filename, extname) {
       // create headers fields
-      const fields = _(jsonData[0])
+      const deepCloneData = _.cloneDeep(jsonData)
+      const fields = _(deepCloneData[0])
         .keys()
         .pull('priorities')
         .pull('offers')
@@ -45,9 +46,9 @@ export default {
       })
 
       fields.push('subject1', 'subject2', 'orderInSubject1', 'orderInSubject2')
-
-      const result = _(jsonData)
+      const result = _(deepCloneData)
         .map(student => {
+          student.timestamp = student.timestamp.Time // change the timestamp format
           student.subject1 = student.offers.subject1
           student.subject2 = student.offers.subject2
           student.orderInSubject1 = student.orders.subject1
