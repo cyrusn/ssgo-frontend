@@ -15,7 +15,6 @@
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.1",
     "core-js": "^3.6.5",
-    "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "papaparse": "^5.3.0",

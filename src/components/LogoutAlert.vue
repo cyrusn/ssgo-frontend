@@ -1,26 +1,29 @@
 <template>
   <div
-    class="modal fade"
-    id="logoutAlert"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="logoutAlertLabel"
-    aria-hidden="true"
+    class="toast-container position-fixed bottom-0 end-0 p-3"
+    style="z-index: 5"
   >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="logoutAlertLabel">登出提示</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+    <div
+      class="toast hide"
+      id="logoutAlert"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="toast-header">
+        <strong class="me-auto" id="logoutAlertLabel">登出提示</strong>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        {{ content }}
+        <div class="mt-2 pt-2 border-top">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            @click="onRefreshJWT()"
+          >
+            確定
           </button>
-        </div>
-        <div class="modal-body">
-          <p>{{modalContent}}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" @click="onRefreshJWT()">確定</button>
         </div>
       </div>
     </div>
@@ -28,29 +31,34 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { warningTime } from '@/config.js'
+import { Toast } from 'bootstrap'
 
 export default {
   data () {
     return {
       logoutTimers: [],
-      refresh: false
+      refresh: false,
+      now: false
     }
   },
   watch: {
     jwt () {
-      this.showModalWarning()
+      this.showToastWarning()
     }
   },
   computed: {
     ...mapState(['jwt']),
     ...mapGetters(['expireAt']),
-    modalContent () {
+    content () {
       const { expireAt } = this
       const expireDateString = new Date(expireAt).toLocaleTimeString()
       return `系統將於${expireDateString}登出，請按確定取消登出。`
+    },
+    toast () {
+      const modalElement = document.getElementById('logoutAlert')
+      return new Toast(modalElement)
     }
   },
   methods: {
@@ -58,21 +66,22 @@ export default {
     getCurrentDateTime () {
       return Date.now()
     },
-    showModalWarning () {
+
+    showToastWarning () {
       const { logoutTimers, expireAt, logout, getCurrentDateTime } = this
       const countdown = expireAt - getCurrentDateTime()
 
       logoutTimers.forEach(clearTimeout)
 
       setTimeout(function () {
-        $('#logoutAlert').modal('show')
+        this.toast.show()
       }, countdown - warningTime * 1000)
 
       logoutTimers.push(logout(countdown))
     },
     onRefreshJWT () {
       this.refreshJWT()
-      $('#logoutAlert').modal('hide')
+      this.toast.hide()
     },
     logout (countdown) {
       return setTimeout(function () {

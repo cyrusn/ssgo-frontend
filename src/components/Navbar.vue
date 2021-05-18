@@ -4,7 +4,12 @@
       <a :class="navbarBrandClass" href="https://liping.edu.hk"
         >聖公會李炳中學</a
       >
-      <button class="navbar-toggler" type="button" @click="onToggle">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbar"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -20,11 +25,20 @@
         <span class="navbar-text me-2">
           <font-awesome-icon icon="user" />
           {{ cname }}
-          <font-awesome-icon icon="hourglass" />&nbsp;<formatted-datetime
-            :datetime="expireAtString"
-            format="llll"
-          />
         </span>
+        <button
+          id="logoutCounter"
+          class="btn btn-outline-danger"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          title="更新登出時間"
+          @click="refreshJWT"
+          @mouseover="toggle"
+        >
+          <font-awesome-icon icon="hourglass" />{{ ' ' }} 尚餘{{
+            logoutFromNow
+          }}
+        </button>
       </div>
       <logout-alert />
     </div>
@@ -32,7 +46,6 @@
 </template>
 
 <script>
-import $ from 'jquery'
 import _ from 'lodash'
 
 import teachers from '@/data/teacher'
@@ -40,9 +53,10 @@ import students from '@/data/student'
 
 import RouterListLink from '@/components/RouterListLink.vue'
 import LogoutAlert from '@/components/LogoutAlert'
-import FormattedDatetime from '@/components/FormattedDatetime'
+import moment from 'moment'
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import { Tooltip } from 'bootstrap'
 
 const navbarClass = [
   'navbar',
@@ -56,21 +70,27 @@ const navbarClass = [
 const navbarBrandClass = ['navbar-brand', 'text-secondary']
 
 export default {
+  mounted () {
+    const { updateLogoutFromNow } = this
+    setInterval(() => {
+      updateLogoutFromNow()
+    }, 500)
+  },
   data () {
     return {
       navbarClass,
-      navbarBrandClass
+      navbarBrandClass,
+      logoutFromNow: 0
     }
   },
   components: {
-    FormattedDatetime,
     RouterListLink,
     LogoutAlert
   },
   computed: {
     ...mapGetters(['role', 'userAlias', 'expireAt']),
-    expireAtString () {
-      return this.expireAt
+    logoutCounter () {
+      return new Tooltip(document.getElementById('logoutCounter'))
     },
     cname () {
       const { userAlias, role } = this
@@ -117,13 +137,22 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['refreshJWT']),
     onLogout () {
       // when a page reloaded, it will load component 'Forbidden.vue'
       // where the page will be redirected to '/'
       window.location.reload(true)
     },
-    onToggle () {
-      $('#navbar').collapse('toggle')
+    toggle () {
+      this.logoutCounter.show()
+    },
+    updateLogoutFromNow () {
+      moment.updateLocale('zh-hk', {
+        relativeTime: {
+          mm: '%d分鐘'
+        }
+      })
+      this.logoutFromNow = moment(this.expireAt).fromNow(true)
     }
   }
 }

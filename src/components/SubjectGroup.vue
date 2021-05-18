@@ -21,8 +21,6 @@
       :key="s.id"
       @click="toggleHighlightedSubject(s)"
       style="max-width: 45%"
-      data-bs-toggle="tooltip"
-      data-bs-placement="top"
       :title="getSubject(s).cname"
     >
       {{ getSubject(s).slug }}
@@ -35,16 +33,10 @@ import subjects from '@/data/subject'
 
 import { mapState, mapMutations } from 'vuex'
 import _ from 'lodash'
-import { Tooltip } from 'bootstrap'
 
 export default {
-  mounted () {
-    const tooltipTriggerList = [].slice.call(
-      document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    )
-    tooltipTriggerList.map(el => new Tooltip(el))
-  },
   props: ['name', 'element', 'index', 'movable'],
+
   computed: {
     ...mapState('subject', ['highlightedSubjects']),
     color () {

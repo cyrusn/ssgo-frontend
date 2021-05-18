@@ -11,6 +11,9 @@
           class="badge bg-warning text-dark text-decoration-none"
           href="https://careers.liping.edu.hk/subject-selection/"
           target="_blank"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="前往本校選科簡介網頁"
         >
           <font-awesome-icon icon="link" /> 科目簡介
         </a>
@@ -49,10 +52,9 @@ import { Tooltip } from 'bootstrap'
 
 export default {
   mounted () {
-    const tooltipTriggerList = [].slice.call(
-      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]')).forEach(
+      tooltipNode => new Tooltip(tooltipNode)
     )
-    tooltipTriggerList.map(el => new Tooltip(el))
   },
   data () {
     return {

@@ -52,8 +52,8 @@ export default {
   },
   data () {
     return {
-      userAlias: 'lpdummy5',
-      password: 'no password',
+      userAlias: '',
+      password: '',
       isMock
     }
   },
