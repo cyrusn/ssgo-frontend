@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div style="font-size: medium;" v-if="isConfirmed">
+  <div v-if="isConfirmed">
+    <div id="notice" style="font-size: 14px" class="print-width mx-auto">
       <letter-head :code="noticeCode" />
 
-      <div style="font-size: larger" class="mx-auto px-4 line-height">
+      <div class="mx-auto px-4 line-height">
         <p>敬啟者：</p>
-        <h2 class="text-center my-6">{{ isMock ? mockTitle : title }}事宜</h2>
+        <h4 class="text-center my-6">{{ isMock ? mockTitle : title }}事宜</h4>
         <p class="text-justify my-6">
           <span class="double-space" />
-          本校於下學年中四級將開設13個選修科目，除核心科目外（中國語文、英國語文、數學及通識教育），每位學生須修讀兩個選修科目。
+          本校於下學年中四級將開設13個選修科目，除核心科目外（中國語文、英國語文、數學及公民與社會發展科），每位學生須修讀兩個選修科目。
           {{
             isMock
               ? `為協助學生了解${title}程序及讓學校了解學生選科之意向，學生須在正式選科前進行模擬選科。`
@@ -16,7 +16,7 @@
           }}現請學生因應自己的學習能力、升學目標及興趣等因素，選擇選修科目。學生填表時須審慎認真，並留意下列要點：
         </p>
 
-        <ul class="ml-4 my-6">
+        <ul class="ms-4 my-6">
           <li>由於各科學額及學校資源有限，選修科將按學生全年成績優次編配；</li>
           <li>
             學校在編排選修科目組別時會考慮學生日後出路及興趣，務求滿足大部份學生的意願，惟由於學額、教師數目、學校設備等有限，學校未必能滿足全部學生意願；
@@ -25,23 +25,20 @@
             選修科分派後難以更改，因會直接影響其他學生獲分派的學科，故務必審慎選科；
           </li>
           <li>
-            除核心科目、選修科目及其他學習經歷科目外，升讀中五時學生可申請修讀應用學習課程及數學延伸單元，報讀詳情將於中四級上學期另行通知；
-          </li>
-          <li>
             學生應先參考本校{{ committeeInCharge }}網頁（{{
               committeeWebsite
             }}）相關資料。
           </li>
         </ul>
 
-        <p class="text-justify my-6">
+        <p class="text-justify my-1">
           <span class="double-space" />
           學生必須於本校選科系統（https://careers.liping.edu.hk/ss）完成網上{{
             isMock ? '模擬' : null
           }}選科，確定選科意向後，將選科意向表列印並交家長簽署，並於<formatted-datetime
             :datetime="deadline"
             format="L"
-          />或之前交予班主任。{{
+          />或之前交回校務處收集箱。{{
             isMock
               ? null
               : '是次為正式選科，選科回條一經繳交，將不能更改志願。'
@@ -50,18 +47,18 @@
           }}老師查詢。耑此 <span class="single-space" />函達，敬希
           <span class="single-space" />垂察！
         </p>
-        <div class="my-6">
+        <div class="my-1">
           <p><span class="double-space" />此致</p>
           <p>中三級學生家長及學生</p>
         </div>
 
-        <div class="my-6">
-          <div class="text-right">
+        <div class="my-1">
+          <div class="text-end">
             聖公會李炳中學校長
             <br />彭君華謹啟
           </div>
         </div>
-        <div class="text-left my-6">
+        <div class="text-start my-1">
           <br />
           <formatted-datetime :datetime="deliveryDate" format="LL" />
         </div>
@@ -71,8 +68,8 @@
       <div class="page-break" />
       <letter-head :code="noticeCode" />
 
-      <div style="font-size: larger" class="my-4 px-4">
-        <h2 class="text-center">回條</h2>
+      <div class="px-4">
+        <h4 class="text-center">回條</h4>
         <p class="text-justify">
           敬覆者：頃接
           <span class="single-space" />
@@ -92,12 +89,12 @@
         </p>
       </div>
 
-      <div class="card my-4 mx-4">
+      <div class="card my-1 mx-4">
         <h5 class="card-header">已選定的選科次序</h5>
         <div class="card-body">
           <div class="row">
             <div
-              class="col-xl-2 col-md-4 col-6 my-1 px-1"
+              class="col-4"
               v-for="(element, index) in prioritisedCombinations"
               :key="index"
             >
@@ -112,7 +109,7 @@
         </div>
       </div>
 
-      <div style="font-size: larger" class="mb-4 px-4">
+      <div class="mb-2 px-4">
         <p>
           <span class="double-space" />
           此覆
@@ -135,7 +132,6 @@
                 <td>
                   <br />
                   <br />
-                  <br />
                 </td>
               </tr>
               <tr>
@@ -145,14 +141,17 @@
             </tbody>
           </table>
         </div>
-        <div class="text-left">
+        <div class="text-start">
           <formatted-datetime :datetime="deadline" format="YYYY" />
           <span class="double-space">月</span>
           <span class="double-space">日</span>
         </div>
       </div>
     </div>
-    <instruction v-else />
+  </div>
+  <div v-else>
+    <instruction />
+    <confirm-priorities />
   </div>
 </template>
 
@@ -165,6 +164,7 @@ import students from '@/data/student'
 import _ from 'lodash'
 
 import FormattedDatetime from '@/components/FormattedDatetime'
+import ConfirmPriorities from '@/components/ConfirmPriorities'
 import { mapState, mapGetters } from 'vuex'
 
 import {
@@ -184,7 +184,8 @@ export default {
     LetterHead,
     SubjectGroup,
     Instruction,
-    FormattedDatetime
+    FormattedDatetime,
+    ConfirmPriorities
   },
   data () {
     return {
@@ -224,6 +225,15 @@ export default {
 </script>
 
 <style>
+@page {
+  size: 210mm 297mm;
+  /* you can also specify margins here: */
+}
+
+.print-width {
+  max-width: 794px;
+}
+
 .page-break {
   page-break-after: always;
 }

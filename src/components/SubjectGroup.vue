@@ -20,7 +20,7 @@
       :class="highlightedSubjects[s] ? 'btn-warning' : color"
       :key="s.id"
       @click="toggleHighlightedSubject(s)"
-      style="max-width: 45%"
+      style="max-width: 35%"
       :title="getSubject(s).cname"
     >
       {{ getSubject(s).slug }}
@@ -42,7 +42,7 @@ export default {
     color () {
       const { movable, name } = this
       if (!movable && name === 'prioritised') {
-        return 'btn-danger'
+        return 'btn-success'
       }
 
       if (name === 'available') {
@@ -53,7 +53,7 @@ export default {
         return 'btn-lg btn-light'
       }
 
-      return 'btn-success'
+      return 'btn-danger'
     }
   },
   methods: {

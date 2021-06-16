@@ -9,32 +9,34 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faArrowsAlt,
+  faExclamationTriangle,
+  faHeart,
   faHourglass,
   faLink,
-  faUser,
+  faListAlt,
+  faPrint,
   faSignInAlt,
   faSignOutAlt,
-  faHeart,
-  faPrint,
-  faListAlt,
+  faSitemap,
   faTrophy,
-  faSitemap
+  faUser
 } from '@fortawesome/free-solid-svg-icons'
 
 sync(store, router)
 
 library.add(
   faArrowsAlt,
+  faExclamationTriangle,
+  faHeart,
   faHourglass,
   faLink,
-  faUser,
+  faListAlt,
+  faPrint,
   faSignInAlt,
   faSignOutAlt,
-  faHeart,
-  faPrint,
-  faListAlt,
+  faSitemap,
   faTrophy,
-  faSitemap
+  faUser
 )
 
 const app = createApp({

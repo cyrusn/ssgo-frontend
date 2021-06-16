@@ -1,6 +1,6 @@
 <template>
   <div>
-    <instruction v-if="!isConfirmed" />
+    <instruction />
     <confirm-priorities />
     <highlight-button-group />
     <div class="card" v-if="!isConfirmed">

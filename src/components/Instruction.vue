@@ -1,5 +1,5 @@
 <template>
-  <div class="alert alert-danger">
+  <div class="alert alert-warning">
     同學必須完成網上{{
       isMock ? '模擬' : null
     }}選科。列印選科意向表並交家長簽署，並於<formatted-datetime
@@ -16,7 +16,10 @@
       <li>列印選科意向表</li>
       <li>家長簽署</li>
       <li>
-        <formatted-datetime :datetime="deadline" format="l" />或之前交予班主任
+        <formatted-datetime
+          :datetime="deadline"
+          format="l"
+        />或以前回校務處收集箱。
       </li>
     </ul>
   </div>
