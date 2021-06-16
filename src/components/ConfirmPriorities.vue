@@ -27,7 +27,7 @@
     同學必須列印選科意向表列印並交家長簽署，並於<formatted-datetime
       :datetime="deadline"
       format="l"
-    />或之前交回校務處收集箱。
+    />或之前交回予班主任或校務處收集箱。
   </div>
 
   <div

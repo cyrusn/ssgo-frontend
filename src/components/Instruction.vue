@@ -19,7 +19,7 @@
         <formatted-datetime
           :datetime="deadline"
           format="l"
-        />或以前回校務處收集箱。
+        />或以前交回予班主任或校務處收集箱。
       </li>
     </ul>
   </div>
