@@ -2,7 +2,7 @@
   <div
     v-for="toast in toasts"
     :key="toast.id"
-    class="position-fixed top-0 end-0 p-1"
+    class="position-fixed bottom-0 end-0 p-1"
     style="z-index: 5"
   >
     <div
