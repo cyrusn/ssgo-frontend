@@ -109,12 +109,6 @@ export default {
           content: '選科'
         },
         {
-          roles: ['STUDENT'],
-          name: 'notice',
-          icon: 'print',
-          content: '列印'
-        },
-        {
           roles: ['TEACHER', 'ADMIN'],
           name: 'list',
           icon: 'list-alt',

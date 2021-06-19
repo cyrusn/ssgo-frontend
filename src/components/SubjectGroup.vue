@@ -16,8 +16,10 @@
       type="button"
       class="btn"
       :disabled="!movable"
-      v-for="s in element.subjects"
-      :class="highlightedSubjects[s] ? 'btn-warning' : color"
+      v-for="(s, n) in element.subjects"
+      :class="
+        highlightedSubjects[s] ? (n == 0 ? 'btn-warning' : 'btn-info') : color
+      "
       :key="s.id"
       @click="toggleHighlightedSubject(s)"
       style="max-width: 35%"
@@ -46,11 +48,7 @@ export default {
       }
 
       if (name === 'available') {
-        return 'btn-info'
-      }
-
-      if (name === 'notice') {
-        return 'btn-lg btn-light'
+        return 'btn-primary'
       }
 
       return 'btn-danger'

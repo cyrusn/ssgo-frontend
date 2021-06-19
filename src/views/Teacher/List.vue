@@ -30,7 +30,7 @@
         />
       </div>
     </form>
-    <student-table :list="filteredStudents" />
+    <student-table :list="filteredStudents" :signatures="signatures" />
   </div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
       const names = ['student', classcodeFilter, isConfirmedFilter]
       return _.compact(names).join('-')
     },
-    ...mapState('students', ['students']),
+    ...mapState('students', ['students', 'signatures']),
     ...mapGetters(['role']),
     filteredStudents () {
       const { students, classcodeFilter, isConfirmedFilter, isX3Filter } = this

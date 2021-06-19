@@ -6,7 +6,6 @@ const schoolWebsite = 'https://liping.edu.hk'
 const committeeInCharge = '生涯規劃部'
 const committeeWebsite = 'https://careers.liping.edu.hk'
 const schoolYear = '2020-21'
-const noticeCode = '43/2020-2021'
 const pics = ['許麗淳', '葉文駿']
 const committeeHead = '顏昭洋'
 const deliveryDate = '2021-06-28'
@@ -23,7 +22,6 @@ export {
   committeeInCharge,
   committeeWebsite,
   schoolYear,
-  noticeCode,
   pics,
   committeeHead,
   deliveryDate,

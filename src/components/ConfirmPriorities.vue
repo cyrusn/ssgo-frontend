@@ -1,34 +1,14 @@
 <template>
-  <div v-if="!confirmable" class="alert alert-primary">
-    <span><font-awesome-icon icon="exclamation-triangle"/></span>
-    {{ ' ' }}尚未完成，同學必須將所有選科組合排序。
-  </div>
-
-  <div v-else-if="!isConfirmed" class="alert alert-danger">
-    <h4>確定選科次序</h4>
-    <p>
-      <span><font-awesome-icon icon="exclamation-triangle"/></span>
-      {{ ' ' }}尚未完成，同學必須確定選科次序。
-    </p>
-    <button
-      type="button"
-      class="btn me-2 mb-2"
-      :class="isConfirmed ? 'btn-secondary' : 'btn-danger'"
-      :disabled="isConfirmed"
-      @click="onClickConfirmButton"
-    >
-      確定選科次序
-    </button>
-  </div>
-
-  <div v-else class="alert alert-danger">
-    <span><font-awesome-icon icon="exclamation-triangle"/></span>
-    {{ ' ' }}
-    同學必須列印選科意向表列印並交家長簽署，並於<formatted-datetime
-      :datetime="deadline"
-      format="l"
-    />或之前交回予班主任或校務處收集箱。
-  </div>
+  <button
+    type="button"
+    v-if="!isConfirmed"
+    class="btn me-2 my-2"
+    :class="isConfirmed ? 'btn-secondary' : 'btn-danger'"
+    :disabled="isConfirmed"
+    @click="onClickConfirmButton"
+  >
+    {{ ' ' }}確定選科次序
+  </button>
 
   <div
     class="modal fade"
@@ -42,7 +22,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="confirmPrioritiesModalLabel">
-            確定選科次序
+            確定選科組合次序
           </h5>
           <button
             type="button"
@@ -52,8 +32,10 @@
           ></button>
         </div>
         <div class="modal-body">
+          <img class="img-thumbnail" :src="signature" alt="" />
           <div v-html="warningMessage"></div>
         </div>
+
         <div class="modal-footer">
           <button
             type="button"
@@ -66,7 +48,7 @@
             type="button"
             class="btn btn-danger"
             @click="onConfirm"
-            :disabled="isConfirmed || !confirmable"
+            :disabled="isConfirmed || !isPrioritised"
           >
             確定
           </button>
@@ -80,19 +62,26 @@
 import { Modal } from 'bootstrap'
 import combinations from '@/data/combination'
 import { mapState, mapGetters, mapActions } from 'vuex'
-import FormattedDatetime from '@/components/FormattedDatetime'
 import { deadline } from '@/config.js'
 
 export default {
-  components: {
-    FormattedDatetime
-  },
   data () {
     return {
       deadline,
       warningMessage: `<p>
-          是否確定選科次序？一經確定後，同學一概<u><b>不得</b></u>更改選科次序。
+          是否確定次序？一經確定後，選科組合次序一概不得更改。
         </p>`
+    }
+  },
+  watch: {
+    isPrioritised () {
+      console.log(this.isPrioritised)
+      if (!this.isPrioritised) {
+        this.setSignature({
+          isSigned: false,
+          data: ''
+        })
+      }
     }
   },
   computed: {
@@ -100,14 +89,19 @@ export default {
       const modalElement = document.getElementById('confirmPrioritiesModal')
       return new Modal(modalElement)
     },
-    ...mapState('student', ['priorities', 'isConfirmed']),
+    ...mapState('student', [
+      'priorities',
+      'isConfirmed',
+      'isSigned',
+      'signature'
+    ]),
     ...mapGetters(['userAlias']),
-    confirmable () {
+    isPrioritised () {
       return this.priorities.length === combinations.length
     }
   },
   methods: {
-    ...mapActions('student', ['setIsConfirmed']),
+    ...mapActions('student', ['setIsConfirmed', 'setSignature']),
     onConfirm () {
       const { userAlias } = this
       this.setIsConfirmed({ userAlias, isconfirmed: true })

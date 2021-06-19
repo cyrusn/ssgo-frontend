@@ -10,6 +10,7 @@
         <th>已確定 ／ 尚未確定</th>
         <th>收讀X3</th>
         <th>確定時間</th>
+        <th style="max-width:10%">家長簽署</th>
         <th v-if="role === 'ADMIN'">級名次</th>
       </tr>
     </thead>
@@ -62,6 +63,9 @@
             format="lll"
           />
         </td>
+        <td>
+          <zoom-signature :src="getSignatureAddressByUserAlias(s.userAlias)" />
+        </td>
         <td
           v-if="role === 'ADMIN'"
           :class="s.rank === 0 ? 'text-danger' : 'text-success'"
@@ -76,15 +80,35 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import FormattedDatetime from '@/components/FormattedDatetime'
+import ZoomSignature from '@/components/ZoomSignature'
+import _ from 'lodash'
 
 export default {
-  props: ['list'],
-  components: { FormattedDatetime },
+  props: ['list', 'signatures'],
+  components: { FormattedDatetime, ZoomSignature },
   computed: {
     ...mapGetters(['role'])
   },
   methods: {
-    ...mapActions('student', ['setIsConfirmed', 'setIsX3'])
+    ...mapActions('student', ['setIsConfirmed', 'setIsX3']),
+    getSignatureAddressByUserAlias (userAlias) {
+      const { signatures } = this
+      const result = _.find(signatures, { userAlias })
+      if (result == undefined) {
+        return ''
+      }
+
+      if ('address' in result) {
+        return result.address
+      }
+      return ''
+    }
   }
 }
 </script>
+
+<style>
+.zoom:hover {
+  transform: scale(6);
+}
+</style>

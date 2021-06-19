@@ -18,12 +18,22 @@ export default {
         'is3X': Boolean,
         'isConfirmed': Boolean,
         'timestamp': Time
-      */
+        */
+    ],
+    signatures: [
+      /*
+        'userAlias': String
+        'isSigned': Boolean,
+        'address': String,
+       */
     ]
   },
   mutations: {
     update (state, students) {
       state.students = students
+    },
+    updateSignatures (state, signatures) {
+      state.signatures = signatures
     }
   },
   actions: {
@@ -46,6 +56,16 @@ export default {
           commit('update', list)
         })
         .catch(alertMessage)
+
+      fetch('./api/signatures', {
+        method: 'GET',
+        headers: { jwt: rootState.jwt }
+      })
+        .then(checkError)
+        .then(res => res.json())
+        .then(list => {
+          commit('updateSignatures', list)
+        })
     },
     updateRanks ({ rootState, dispatch }, json) {
       fetch('./api/students/rank', {

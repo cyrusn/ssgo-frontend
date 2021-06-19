@@ -20,7 +20,7 @@
       </h5>
       <div class="btn-toolbar mb-2 me-2" v-for="gp in groups" :key="gp.id">
         <div class="btn-group btn-group-sm">
-          <button class="btn text-nowrap btn-outline-secondary">
+          <button class="btn text-nowrap btn-outline-secondary no-hover">
             選修{{ gp.name }}
           </button>
 
@@ -28,7 +28,11 @@
             v-for="subj in subjects[gp.id]"
             class="btn text-nowrap"
             :class="
-              highlightedSubjects[subj.code] ? 'btn-warning' : 'btn-primary'
+              highlightedSubjects[subj.code]
+                ? gp.id == 1
+                  ? 'btn-warning'
+                  : 'btn-info'
+                : 'btn-primary'
             "
             :key="subj.id"
             @click="toggleHighlightedSubject(subj.code)"

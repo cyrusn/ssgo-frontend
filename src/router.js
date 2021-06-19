@@ -11,7 +11,6 @@ import Allocation from '@/views/Admin/Allocation.vue'
 import Rank from '@/views/Admin/Rank.vue'
 
 import Student from '@/views/Student/Student.vue'
-import Notice from '@/views/Student/Notice.vue'
 import Selection from '@/views/Student/Selection.vue'
 
 function ViewBuilder (View) {
@@ -67,11 +66,6 @@ const router = createRouter({
           path: 'selection',
           name: 'selection',
           component: Selection
-        },
-        {
-          path: 'notice',
-          name: 'notice',
-          component: Notice
         }
       ]
     }
