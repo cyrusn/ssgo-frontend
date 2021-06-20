@@ -7,6 +7,13 @@
     "slug": "生物"
   },
   {
+    "code": "bio2",
+    "group": 2,
+    "name": "Biology(2)",
+    "cname": "生物二組",
+    "slug": "生物"
+  },
+  {
     "code": "bafs",
     "group": 1,
     "name": "Business, Accounting and Financial Studies",
@@ -27,13 +34,7 @@
     "cname": "中國歷史",
     "slug": "中史"
   },
-  {
-    "code": "bio2",
-    "group": 2,
-    "name": "Biology(2)",
-    "cname": "生物二組",
-    "slug": "生物二"
-  },
+
   {
     "code": "econ",
     "group": 2,

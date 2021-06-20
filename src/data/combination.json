@@ -25,11 +25,11 @@
   },
   {
     "id": 6,
-    "subjects": ["bafs", "chem"]
+    "subjects": ["bafs", "bio2"]
   },
   {
     "id": 7,
-    "subjects": ["bafs", "bio2"]
+    "subjects": ["bafs", "chem"]
   },
   {
     "id": 8,
@@ -53,11 +53,11 @@
   },
   {
     "id": 13,
-    "subjects": ["chist", "chem"]
+    "subjects": ["chist", "bio2"]
   },
   {
     "id": 14,
-    "subjects": ["chist", "bio2"]
+    "subjects": ["chist", "chem"]
   },
   {
     "id": 15,
@@ -81,11 +81,11 @@
   },
   {
     "id": 20,
-    "subjects": ["phy", "chem"]
+    "subjects": ["phy", "bio2"]
   },
   {
     "id": 21,
-    "subjects": ["phy", "bio2"]
+    "subjects": ["phy", "chem"]
   },
   {
     "id": 22,
@@ -109,11 +109,11 @@
   },
   {
     "id": 27,
-    "subjects": ["ths", "chem"]
+    "subjects": ["ths", "bio2"]
   },
   {
     "id": 28,
-    "subjects": ["ths", "bio2"]
+    "subjects": ["ths", "chem"]
   },
   {
     "id": 29,
@@ -137,11 +137,11 @@
   },
   {
     "id": 34,
-    "subjects": ["va", "chem"]
+    "subjects": ["va", "bio2"]
   },
   {
     "id": 35,
-    "subjects": ["va", "bio2"]
+    "subjects": ["va", "chem"]
   },
   {
     "id": 36,
