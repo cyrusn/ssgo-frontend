@@ -10,7 +10,7 @@
     <span
       v-else
       class="badge text-light rounded-pill rounded-pill"
-      :class="isConfirmed ? 'bg-danger' : 'bg-success '"
+      :class="isConfirmed ? 'bg-success ' : 'bg-danger'"
       >{{ index + 1 }}</span
     >
     <span
