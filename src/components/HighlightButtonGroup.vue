@@ -18,32 +18,34 @@
           <font-awesome-icon icon="link" /> 科目簡介
         </a>
       </h5>
-      <div class="btn-toolbar mb-2 me-2" v-for="gp in groups" :key="gp.id">
-        <div class="btn-group btn-group-sm">
-          <button class="btn text-nowrap btn-outline-dark no-hover" disabled>
-            選修{{ gp.name }}
-          </button>
-
-          <button
+      <ul class="list-group mb-1" v-for="gp in groups" :key="gp.id">
+        <li
+          class="list-group-item text-nowrap"
+          :class="gp.id == 1 ? 'bg-warning' : 'bg-info'"
+        >
+          選修{{ gp.name }}
+        </li>
+        <li class="list-group-item flex-fill text-nowrap text-center">
+          <span
             v-for="subj in subjects[gp.id]"
-            class="btn text-nowrap"
+            :key="subj.id"
+            @click="toggleHighlightedSubject(subj.code)"
+            class="mx-2 p-1 rounded text-dark font-weight-bolder"
             :class="
               highlightedSubjects[subj.code]
                 ? gp.id == 1
-                  ? 'btn-warning'
-                  : 'btn-info'
-                : 'btn-outline-primary'
+                  ? 'bg-warning'
+                  : 'bg-info'
+                : ''
             "
-            :key="subj.id"
-            @click="toggleHighlightedSubject(subj.code)"
             data-bs-toggle="tooltip"
             :data-bs-placement="gp.id === 1 ? 'top' : 'bottom'"
             :title="subj.cname"
           >
             {{ subj.slug }}
-          </button>
-        </div>
-      </div>
+          </span>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

@@ -1,33 +1,35 @@
 <template>
-  <div class="btn-group btn-group-sm w-100">
-    <button
-      type="button"
-      class="btn"
+  <li class="list-group-item flex-fill">
+    <span
+      class="me-2 badge bg-primary text-light rounded-pill"
       :class="color"
-      style="max-width: 30%"
-      :disabled="!movable"
+      v-if="name === 'available'"
     >
-      <font-awesome-icon icon="arrows-alt" v-if="name === 'available'" />
-      <span v-else class="badge bg-danger text-light rounded-pill">{{
-        index + 1
-      }}</span>
-    </button>
-    <button
-      type="button"
-      class="btn"
-      :disabled="!movable"
+      <font-awesome-icon icon="arrows-alt" />
+    </span>
+    <span
+      v-else
+      class="badge text-light rounded-pill rounded-pill"
+      :class="isConfirmed ? 'bg-danger' : 'bg-success '"
+      >{{ index + 1 }}</span
+    >
+    <span
       v-for="(s, n) in element.subjects"
+      class="ms-2 p-1 rounded font-weight-bolder"
       :class="
-        highlightedSubjects[s] ? (n == 0 ? 'btn-warning' : 'btn-info') : color
+        highlightedSubjects[s]
+          ? n == 0
+            ? 'bg-warning'
+            : 'bg-info'
+          : 'text-dark '
       "
       :key="s.id"
       @click="toggleHighlightedSubject(s)"
-      style="max-width: 35%"
       :title="getSubject(s).cname"
     >
       {{ getSubject(s).slug }}
-    </button>
-  </div>
+    </span>
+  </li>
 </template>
 
 <script>
@@ -40,19 +42,7 @@ export default {
   props: ['name', 'element', 'index', 'movable'],
 
   computed: {
-    ...mapState('subject', ['highlightedSubjects']),
-    color () {
-      const { movable, name } = this
-      if (!movable && name === 'prioritised') {
-        return 'btn-outline-success'
-      }
-
-      if (name === 'available') {
-        return 'btn-outline-primary'
-      }
-
-      return 'btn-outline-danger'
-    }
+    ...mapState('subject', ['highlightedSubjects'])
   },
   methods: {
     ...mapMutations('subject', ['toggleHighlightedSubject']),

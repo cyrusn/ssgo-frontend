@@ -1,23 +1,25 @@
 <template>
   <div class="card" v-if="!isConfirmed">
     <h5 class="card-header bg-light">尚未編排的選科組合</h5>
-    <div class="card-body">
+    <div class="card-body small">
       <draggable
         :list="availableCombinations"
         itemKey="id"
         ghost-class="ghost"
         class="row"
         group="subject"
+        delay="100"
+        delayOnTouchOnly="true"
       >
         <template #item="{element, index}">
-          <div class="col-md-4 col-6 my-1 px-1">
+          <ul class="list-group list-group-horizontal col-md-4 col-6 mb-1 px-1">
             <subject-group
               :element="element"
               :index="index"
               :movable="!isConfirmed"
               name="available"
             />
-          </div>
+          </ul>
         </template>
       </draggable>
     </div>
@@ -26,17 +28,21 @@
     <h5 class="card-header">
       已編排的選科組合次序
     </h5>
-    <div class="card-body">
+    <div class="card-body small">
       <draggable
         :list="prioritisedCombinations"
         itemKey="id"
         class="row"
         group="subject"
+        delay="100"
+        delayOnTouchOnly="true"
         @change="onChange"
         @start="dragging = !isConfirmed"
       >
         <template #item="{element, index}">
-          <div class="col-md-4 col-6 my-1 px-1">
+          <div
+            class="list-group list-group-horizontal col-md-4 col-6 mb-1 px-1"
+          >
             <subject-group
               :element="element"
               :index="index"
@@ -63,7 +69,6 @@ export default {
     SubjectGroup,
     Draggable
   },
-
   computed: {
     ...mapState('student', ['priorities', 'isConfirmed', 'timestamp']),
     availableCombinations () {
@@ -89,6 +94,6 @@ export default {
 <style>
 .sortable-ghost,
 .ghost {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 </style>
