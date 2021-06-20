@@ -32,8 +32,10 @@
           ></button>
         </div>
         <div class="modal-body">
-          <img class="img-thumbnail" :src="signature" alt="" />
-          <div v-html="warningMessage"></div>
+          <signature-image v-if="!isConfirmed" :signature="signature" />
+          <p>
+            是否確定次序？一經確定後，選科組合次序一概不得更改。
+          </p>
         </div>
 
         <div class="modal-footer">
@@ -61,16 +63,15 @@
 <script>
 import { Modal } from 'bootstrap'
 import combinations from '@/data/combination'
+import SignatureImage from '@/components/SignatureImage'
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { deadline } from '@/config.js'
 
 export default {
+  components: { SignatureImage },
   data () {
     return {
-      deadline,
-      warningMessage: `<p>
-          是否確定次序？一經確定後，選科組合次序一概不得更改。
-        </p>`
+      deadline
     }
   },
   watch: {

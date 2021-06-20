@@ -2,10 +2,7 @@
   <div class="card mb-2" ref="container">
     <div class="card-header"><h5>家長簽署</h5></div>
     <div class="card-body">
-      <div v-if="isConfirmed">
-        <p>家長已簽署確認次序</p>
-        <img :src="signature" alt="" class="img-thumbnail" />
-      </div>
+      <signature-image v-if="isConfirmed" :signature="signature" />
       <div v-else>
         <vue-signature-pad
           class="border border-1 bg-light card-img-top mx-auto
@@ -27,13 +24,15 @@
 <script>
 import ConfirmPriorities from '@/components/ConfirmPriorities'
 import VueSignaturePad from 'vue3-signature-pad'
+import SignatureImage from '@/components/SignatureImage'
 import { mapState, mapActions, mapMutations } from 'vuex'
 import combinations from '@/data/combination'
 
 export default {
   components: {
     ConfirmPriorities,
-    VueSignaturePad
+    VueSignaturePad,
+    SignatureImage
   },
   data () {
     return {
