@@ -1,18 +1,20 @@
 <template>
   <div
-    v-for="toast in toasts"
-    :key="toast.id"
     class="position-fixed top-0 start-50 translate-middle-x p-1 w-100"
     style="z-index: 5"
+    @click="clearMessages"
   >
     <div
+      v-for="toast in toasts"
+      :key="toast.id"
       :ref="toast.name"
-      class="toast hide my-1 fs-5 w-100 bg-light"
+      class="toast hide my-1 fs-5 w-100 bg-danger text-light "
+      data-bs-autohide="false"
       role="alert"
       aria-live="assertive"
       aria-atomic="true"
     >
-      <div class="toast-body text-danger text-center">
+      <div class="toast-body text-center">
         <span><font-awesome-icon icon="exclamation-triangle" />{{ ' ' }}</span>
         <span>{{ toast.message }}</span>
       </div>
@@ -35,7 +37,7 @@ export default {
       toasts: [
         {
           name: 'confirmedLiveToast',
-          message: '簽署後，請按「確認選科次序」。'
+          message: '家長已簽署，請按「確認選科次序」。'
         },
         {
           name: 'prioritisedLiveToast',

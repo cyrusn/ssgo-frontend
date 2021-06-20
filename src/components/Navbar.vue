@@ -13,7 +13,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbar" v-if="userAlias">
+      <div class="show navbar-collapse" id="navbar" v-if="userAlias">
         <ul class="navbar-nav me-auto">
           <router-list-link v-for="n in Navs" :name="n.name" :key="n.id">
             <font-awesome-icon :icon="n.icon" /> {{ n.content }}
