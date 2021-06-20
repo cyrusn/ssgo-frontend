@@ -8,7 +8,7 @@
     <div class="card-body">
       <h5>
         <a
-          class="badge bg-warning text-dark text-decoration-none"
+          class="badge bg-light text-dark text-decoration-none"
           href="https://careers.liping.edu.hk/subject-selection/"
           target="_blank"
           data-bs-toggle="tooltip"
@@ -20,7 +20,7 @@
       </h5>
       <div class="btn-toolbar mb-2 me-2" v-for="gp in groups" :key="gp.id">
         <div class="btn-group btn-group-sm">
-          <button class="btn text-nowrap btn-outline-secondary no-hover">
+          <button class="btn text-nowrap btn-outline-dark no-hover" disabled>
             選修{{ gp.name }}
           </button>
 
@@ -32,7 +32,7 @@
                 ? gp.id == 1
                   ? 'btn-warning'
                   : 'btn-info'
-                : 'btn-primary'
+                : 'btn-outline-primary'
             "
             :key="subj.id"
             @click="toggleHighlightedSubject(subj.code)"

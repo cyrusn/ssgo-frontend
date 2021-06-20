@@ -8,7 +8,7 @@
       :disabled="!movable"
     >
       <font-awesome-icon icon="arrows-alt" v-if="name === 'available'" />
-      <span v-else class="badge bg-light text-dark rounded-pill">{{
+      <span v-else class="badge bg-danger text-light rounded-pill">{{
         index + 1
       }}</span>
     </button>
@@ -44,14 +44,14 @@ export default {
     color () {
       const { movable, name } = this
       if (!movable && name === 'prioritised') {
-        return 'btn-success'
+        return 'btn-outline-success'
       }
 
       if (name === 'available') {
-        return 'btn-primary'
+        return 'btn-outline-primary'
       }
 
-      return 'btn-danger'
+      return 'btn-outline-danger'
     }
   },
   methods: {
