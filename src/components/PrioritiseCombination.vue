@@ -27,27 +27,25 @@
       已編排的選科組合次序
     </h5>
     <div class="card-body">
-      <div class="row">
-        <draggable
-          :list="prioritisedCombinations"
-          itemKey="id"
-          class="row"
-          group="subject"
-          @change="onChange"
-          @start="dragging = !isConfirmed"
-        >
-          <template #item="{element, index}">
-            <div class="col-md-4 col-6 my-1 px-1">
-              <subject-group
-                :element="element"
-                :index="index"
-                :movable="!isConfirmed"
-                name="prioritised"
-              />
-            </div>
-          </template>
-        </draggable>
-      </div>
+      <draggable
+        :list="prioritisedCombinations"
+        itemKey="id"
+        class="row"
+        group="subject"
+        @change="onChange"
+        @start="dragging = !isConfirmed"
+      >
+        <template #item="{element, index}">
+          <div class="col-md-4 col-6 my-1 px-1">
+            <subject-group
+              :element="element"
+              :index="index"
+              :movable="!isConfirmed"
+              name="prioritised"
+            />
+          </div>
+        </template>
+      </draggable>
     </div>
   </div>
 </template>
