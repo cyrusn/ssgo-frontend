@@ -58,4 +58,10 @@ export default {
 .dragArea {
   min-height: 50px;
 }
+
+/* Overrides list-group-item from Bootstrap */
+.list-group-item {
+  /* height: 30px; */
+  padding: 3px 15px !important;
+}
 </style>

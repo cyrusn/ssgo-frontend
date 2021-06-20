@@ -1,7 +1,7 @@
 <template>
   <div class="card" v-if="!isConfirmed">
     <h5 class="card-header bg-light">尚未編排的選科組合</h5>
-    <div class="card-body small">
+    <div class="card-body">
       <draggable
         :list="availableCombinations"
         itemKey="id"
@@ -28,7 +28,7 @@
     <h5 class="card-header">
       已編排的選科組合次序
     </h5>
-    <div class="card-body small">
+    <div class="card-body">
       <draggable
         :list="prioritisedCombinations"
         itemKey="id"
