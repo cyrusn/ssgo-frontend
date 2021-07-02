@@ -18,8 +18,8 @@
         </div>
         <div class="col-auto">
           <select class="form-select" v-model="isX3Filter">
-            <option value="">篩選3X</option>
-            <option value="x3">收讀</option>
+            <option value="">篩選健管</option>
+            <option value="x3">修讀</option>
             <option value="notX3">不適用</option>
           </select>
         </div>

@@ -8,7 +8,7 @@
         <th>英文姓名</th>
         <th>中文姓名</th>
         <th>已確定 ／ 尚未確定</th>
-        <th>收讀X3</th>
+        <th>修讀健管</th>
         <th>確定時間</th>
         <th style="max-width:10%">家長簽署</th>
         <th v-if="role === 'ADMIN'">級名次</th>
@@ -44,7 +44,7 @@
           <span
             v-if="role === 'TEACHER'"
             :class="!s.isX3 ? 'text-danger' : ''"
-            >{{ s.isX3 ? '收讀' : '不適用' }}</span
+            >{{ s.isX3 ? '修讀' : '不適用' }}</span
           >
           <input
             v-else
@@ -54,7 +54,7 @@
             @click="setIsX3({ userAlias: s.userAlias, isX3: !s.isX3 })"
             :checked="s.isX3"
           />
-          {{ s.isX3 ? '收讀' : '不適用' }}
+          {{ s.isX3 ? '修讀' : '不適用' }}
         </td>
         <td>
           <formatted-datetime

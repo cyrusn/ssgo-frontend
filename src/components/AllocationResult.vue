@@ -12,7 +12,7 @@
         v-for="s in occupiedSubjects"
         :key="s.id"
         class="badge bg-warning text-dark me-1"
-        >{{ findSubject(s).slug }}</span
+        >{{ findSubject(s).code.toUpperCase() }}</span
       >
     </div>
     <subject-occupied-counters :counters="counters" />
@@ -36,8 +36,8 @@ const defaultCounters = {
   phy: 0,
   ths: 0,
   va: 0,
-  chem: 0,
   bio2: 0,
+  chem: 0,
   econ: 0,
   geog: 0,
   hmsc: 0,

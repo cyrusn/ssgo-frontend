@@ -26,7 +26,7 @@
   </div>
   <div class="card my-4">
     <h5 class="card-header">
-      已編排的選科組合次序
+      已{{ isConfirmed ? '確定' : '編排' }}的選科組合次序
     </h5>
     <div class="card-body">
       <draggable
@@ -47,6 +47,7 @@
               :element="element"
               :index="index"
               :movable="!isConfirmed"
+              :isConfirmed="isConfirmed"
               name="prioritised"
             />
           </div>

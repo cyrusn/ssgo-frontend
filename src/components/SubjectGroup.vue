@@ -1,9 +1,8 @@
 <template>
   <li class="list-group-item flex-fill">
     <span
-      class="me-2 badge bg-primary text-light rounded-pill"
-      :class="color"
       v-if="name === 'available'"
+      class="me-2 badge bg-primary text-light rounded-pill"
     >
       <font-awesome-icon icon="arrows-alt" />
     </span>
@@ -39,7 +38,7 @@ import { mapState, mapMutations } from 'vuex'
 import _ from 'lodash'
 
 export default {
-  props: ['name', 'element', 'index', 'movable'],
+  props: ['name', 'element', 'index', 'movable', 'isConfirmed'],
 
   computed: {
     ...mapState('subject', ['highlightedSubjects'])

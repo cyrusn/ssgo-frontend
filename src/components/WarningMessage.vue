@@ -9,6 +9,7 @@
       :key="toast.id"
       :ref="toast.name"
       class="toast hide my-1 fs-5 w-100 bg-danger text-light "
+      data-bs-autohide="false"
       role="alert"
       aria-live="assertive"
       aria-atomic="true"

@@ -20,10 +20,10 @@
       </h5>
       <ul class="list-group mb-1" v-for="gp in groups" :key="gp.id">
         <li
-          class="list-group-item text-nowrap"
+          class="list-group-item text-center "
           :class="gp.id == 1 ? 'bg-warning' : 'bg-info'"
         >
-          選修{{ gp.name }}
+          <strong>選修{{ gp.name }}</strong>
         </li>
         <li class="list-group-item flex-fill text-nowrap text-center">
           <span
