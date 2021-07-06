@@ -1,5 +1,5 @@
 <template>
-  <input type="text" class="form-control" v-model.number="capacity">
+  <input type="number" class="form-control" v-model.number="capacity" />
 </template>
 
 <script>

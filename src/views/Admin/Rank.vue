@@ -3,37 +3,39 @@
     <rank-example />
     <div
       v-if="successUpdate"
-      class="fade show alert alert-primary"
+      class="mt-2 fade show alert alert-primary"
       id="successUpdate"
     >
       上載成功
     </div>
     <div
       v-else-if="errorMessage"
-      class="alert alert-danger"
+      class="mt-2 alert alert-danger"
       v-html="errorMessage"
     ></div>
-    <div v-else class="alert alert-success">數據正確，可以上載。</div>
-    <form>
-      <div class="form-group">
+    <div v-else class="mt-2 alert alert-success">數據正確，可以上載。</div>
+    <form class="mt-2">
+      <div class="form-group mb-2">
         <textarea rows="5" class="form-control" v-model="csvData"></textarea>
       </div>
-      <button
-        class="btn btn-info me-2"
-        type="button"
-        data-toggle="collapse"
-        data-target="#exampleRank"
-      >
-        顯示例子
-      </button>
-      <button
-        type="button"
-        class="btn btn-primary"
-        @click="update"
-        :disabled="errorMessage !== ''"
-      >
-        上載
-      </button>
+      <div class="btn-group" role="group">
+        <button
+          class="btn btn-warning"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleRank"
+        >
+          顯示例子
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          @click="update"
+          :disabled="errorMessage !== ''"
+        >
+          上載
+        </button>
+      </div>
     </form>
   </div>
 </template>
