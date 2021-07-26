@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faArrowsAlt,
+  faChartBar,
   faExclamationTriangle,
   faHeart,
   faHourglass,
@@ -26,6 +27,7 @@ sync(store, router)
 
 library.add(
   faArrowsAlt,
+  faChartBar,
   faExclamationTriangle,
   faHeart,
   faHourglass,

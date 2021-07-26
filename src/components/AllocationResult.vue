@@ -1,23 +1,32 @@
 <template>
-  <div>
-    <div class="alert alert-success">
-      已遞交選科資料及已上載級名次人數：{{ filterdStudents.length }}
-    </div>
-    <div class="alert alert-info">
-      獲分發選修科人數：{{ allocationResults.length }}
-    </div>
-    <div class="alert alert-warning">
-      <h6>已滿額選修科目</h6>
-      <span
-        v-for="s in occupiedSubjects"
-        :key="s.id"
-        class="badge bg-warning text-dark me-1"
-        >{{ findSubject(s).code.toUpperCase() }}</span
-      >
-    </div>
-    <subject-occupied-counters :counters="counters" />
-    <download-results-button-group :results="allocationResults" />
+  <div class="alert alert-info">
+    <b>已獲分發選修科人數 / 總人數</b>
+    <span class="badge bg-danger rounded-pill ms-2"
+      >{{ allocationResults.length }} / {{ filterdStudents.length }}</span
+    >
   </div>
+  <div class="alert alert-warning">
+    <h6>已滿額選修科目</h6>
+    <span
+      v-for="s in occupiedSubjects"
+      :key="s.id"
+      class="badge bg-warning text-dark me-1"
+      >{{ findSubject(s).code.toUpperCase() }}</span
+    >
+  </div>
+  <table class="table table-border text-center table-striped">
+    <tr>
+      <th>獲派志願</th>
+      <th>人次</th>
+    </tr>
+
+    <tr v-for="(value, key) in statistic" :key="key" class="border">
+      <td class="border">{{ key }}</td>
+      <td class="border">{{ value }}</td>
+    </tr>
+  </table>
+  <subject-occupied-counters :counters="counters" />
+  <download-results-button-group :results="allocationResults" />
 </template>
 
 <script>
@@ -53,11 +62,12 @@ export default {
   data () {
     return {
       counters: defaultCounters,
-      occupiedSubjects: []
+      occupiedSubjects: [],
+      statistic: null
     }
   },
   computed: {
-    ...mapState('students', ['students']),
+    ...mapState('students', ['students', 'statistic']),
     ...mapState('subject', ['capacities']),
     filterdStudents () {
       const { filter, students } = this
@@ -68,15 +78,55 @@ export default {
         resetCounters,
         allocate,
         filterdStudents,
-        resetOccupiedSubjects
+        resetOccupiedSubjects,
+        updatePreferenceStatistic
       } = this
       resetOccupiedSubjects()
       resetCounters()
       const allocatedStudents = allocate(filterdStudents)
+      const statistic = {
+        '1': 0,
+        '<=2': 0,
+        '<=3': 0,
+        '<=10': 0,
+        '<=20': 0,
+        '>20': 0
+      }
+      allocatedStudents.forEach(s => {
+        console.log(s.preference)
+        Object.keys(statistic).forEach(key => {
+          switch (key) {
+            case '1':
+              if (s.preference == 1) statistic[key] += 1
+              break
+            case '<=2':
+              if (s.preference <= 2) statistic[key] += 1
+              break
+            case '<=3':
+              if (s.preference <= 2) statistic[key] += 1
+              break
+            case '<=10':
+              if (s.preference <= 10) statistic[key] += 1
+              break
+            case '<=20':
+              if (s.preference <= 20) statistic[key] += 1
+              break
+            case '>20':
+              if (s.preference > 20) statistic[key] += 1
+              break
+            default:
+              break
+          }
+        })
+      })
+      updatePreferenceStatistic(statistic)
       return _.filter(allocatedStudents, s => s.preference > 0)
     }
   },
   methods: {
+    updatePreferenceStatistic (statistic) {
+      this.statistic = Object.assign({}, statistic)
+    },
     findSubject (code) {
       return _.find(subjects, { code })
     },

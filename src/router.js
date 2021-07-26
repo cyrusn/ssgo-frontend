@@ -9,6 +9,7 @@ import List from '@/views/Teacher/List.vue'
 import Admin from '@/views/Admin/Admin.vue'
 import Allocation from '@/views/Admin/Allocation.vue'
 import Rank from '@/views/Admin/Rank.vue'
+import Statistics from '@/views/Admin/Statistics.vue'
 
 import Student from '@/views/Student/Student.vue'
 import Selection from '@/views/Student/Selection.vue'
@@ -54,6 +55,11 @@ const router = createRouter({
           path: 'rank',
           name: 'rank',
           component: Rank
+        },
+        {
+          path: 'statistics',
+          name: 'statistics',
+          component: Statistics
         }
       ]
     },

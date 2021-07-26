@@ -1,9 +1,9 @@
 <template>
   <div class="row mb-4">
     <div class="col-6 row">
-      <div v-for="g in groups" :key="g.id" class="list-group col-6">
+      <div v-for="g in groups" :key="g.id" class="col-6">
         <h4 class="text-center">選修{{ g }}組</h4>
-        <div v-for="s in subjects[g]" :key="s.id" class="list-group-item">
+        <div v-for="s in subjects[g]" :key="s.id" class="mb-2">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">{{ s.slug }} </span>
@@ -11,7 +11,6 @@
             <input-capacity :code="s.code" />
           </div>
         </div>
-        <hr />
       </div>
     </div>
     <div class="col-6">

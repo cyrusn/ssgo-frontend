@@ -125,6 +125,12 @@ export default {
           name: 'allocation',
           icon: 'sitemap',
           content: '分科'
+        },
+        {
+          roles: ['ADMIN'],
+          name: 'statistics',
+          icon: 'chart-bar',
+          content: '統計'
         }
       ]
       return navs.filter(n => _.includes(n.roles, role))
