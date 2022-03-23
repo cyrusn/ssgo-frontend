@@ -17,15 +17,15 @@
     <tbody>
       <tr v-for="s in list" :key="s.id">
         <td>{{ s.userAlias }}</td>
-        <td>{{ s.classcode }}</td>
-        <td>{{ s.classno }}</td>
+        <td>{{ s.classCode }}</td>
+        <td>{{ s.classNo }}</td>
         <td>{{ s.name }}</td>
         <td>{{ s.cname }}</td>
         <td>
           <span
             v-if="role === 'TEACHER'"
             :class="!s.isConfirmed ? 'text-danger' : ''"
-            >{{ s.isConfirmed ? '已確定' : '尚未確定' }}</span
+            >{{ s.isConfirmed ? "已確定" : "尚未確定" }}</span
           >
           <input
             v-else
@@ -34,17 +34,17 @@
             @click="
               setIsConfirmed({
                 userAlias: s.userAlias,
-                isconfirmed: !s.isConfirmed
+                isConfirmed: !s.isConfirmed,
               })
             "
           />
-          {{ s.isConfirmed ? '已確定' : '尚未確定' }}
+          {{ s.isConfirmed ? "已確定" : "尚未確定" }}
         </td>
         <td>
           <span
             v-if="role === 'TEACHER'"
             :class="!s.isX3 ? 'text-danger' : ''"
-            >{{ s.isX3 ? '修讀' : '不適用' }}</span
+            >{{ s.isX3 ? "修讀" : "不適用" }}</span
           >
           <input
             v-else
@@ -54,7 +54,7 @@
             @click="setIsX3({ userAlias: s.userAlias, isX3: !s.isX3 })"
             :checked="s.isX3"
           />
-          {{ s.isX3 ? '修讀' : '不適用' }}
+          {{ s.isX3 ? "修讀" : "不適用" }}
         </td>
         <td>
           <formatted-datetime
@@ -70,7 +70,7 @@
           v-if="role === 'ADMIN'"
           :class="s.rank === 0 ? 'text-danger' : 'text-success'"
         >
-          {{ s.rank === 0 ? '尚未提供' : s.rank }}
+          {{ s.rank === 0 ? "尚未提供" : s.rank }}
         </td>
       </tr>
     </tbody>
@@ -78,33 +78,33 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import FormattedDatetime from '@/components/FormattedDatetime'
-import ZoomSignature from '@/components/ZoomSignature'
-import _ from 'lodash'
+import { mapGetters, mapActions } from "vuex";
+import FormattedDatetime from "@/components/FormattedDatetime";
+import ZoomSignature from "@/components/ZoomSignature";
+import _ from "lodash";
 
 export default {
-  props: ['list', 'signatures'],
+  props: ["list", "signatures"],
   components: { FormattedDatetime, ZoomSignature },
   computed: {
-    ...mapGetters(['role'])
+    ...mapGetters(["role"]),
   },
   methods: {
-    ...mapActions('student', ['setIsConfirmed', 'setIsX3']),
-    getSignatureAddressByUserAlias (userAlias) {
-      const { signatures } = this
-      const result = _.find(signatures, { userAlias })
+    ...mapActions("student", ["setIsConfirmed", "setIsX3"]),
+    getSignatureAddressByUserAlias(userAlias) {
+      const { signatures } = this;
+      const result = _.find(signatures, { userAlias });
       if (result == undefined) {
-        return ''
+        return "";
       }
 
-      if ('address' in result) {
-        return result.address
+      if ("address" in result) {
+        return result.address;
       }
-      return ''
-    }
-  }
-}
+      return "";
+    },
+  },
+};
 </script>
 
 <style>

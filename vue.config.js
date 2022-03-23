@@ -1,13 +1,11 @@
 module.exports = {
   devServer: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true
-      }
-    }
+      "/api": {
+        target: "http://localhost:6612",
+        changeOrigin: true,
+      },
+    },
   },
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/ss/'
-    : '/'
-}
+  publicPath: process.env.NODE_ENV === "production" ? "/ss/" : "/",
+};
