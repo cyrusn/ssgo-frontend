@@ -45,76 +45,76 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import _ from 'lodash'
-import combinations from '@/data/combination.json'
-import subjects from '@/data/subject.json'
+import { mapState } from "vuex";
+import _ from "lodash";
+import combinations from "@/data/combination.json";
+import subjects from "@/data/subject.json";
 
-function getCombinationPreferences (combinations, students) {
+function getCombinationPreferences(combinations, students) {
   return _.flatten(
     students
-      .map(s => s.priorities.slice(0, 3))
-      .map(combIds => {
+      .map((s) => s.priorities.slice(0, 3))
+      .map((combIds) => {
         return _(combIds)
-          .map(id => _.find(combinations, { id }))
-          .map(comb => {
-            return _.flatten(comb.subjects)
+          .map((id) => _.find(combinations, { id }))
+          .map((comb) => {
+            return _.flatten(comb.subjects);
           })
           .flatten()
           .uniq()
-          .value()
-      })
-  ).sort()
+          .value();
+      }),
+  ).sort();
 }
 
 export default {
-  data () {
+  data() {
     return {
       filterByHasRank: false,
       selectClazzes: {
-        '3A': true,
-        '3B': true,
-        '3C': true,
-        '3D': true,
-        '3E': false
+        "3A": true,
+        "3B": true,
+        "3C": true,
+        "3D": true,
+        "3E": false,
       },
-      clazzes: ['3A', '3B', '3C', '3D'],
-      combinations
-    }
+      clazzes: ["3A", "3B", "3C", "3D"],
+      combinations,
+    };
   },
   computed: {
-    ...mapState('students', ['students']),
-    noOfAllocation () {
-      const { students, filterByHasRank, selectClazzes } = this
+    ...mapState("students", ["students"]),
+    noOfAllocation() {
+      const { students, filterByHasRank, selectClazzes } = this;
       return students
-        .filter(s => {
+        .filter((s) => {
           if (!s.isConfirmed) {
-            return false
+            return false;
           }
 
           if (filterByHasRank) {
-            return s.rank > 0
+            return s.rank > 0;
           }
 
-          return true
+          return true;
         })
-        .filter(s => {
+        .filter((s) => {
           return Object.keys(selectClazzes)
-            .filter(clz => selectClazzes[clz])
-            .includes(s.classcode)
-        })
+            .filter((clz) => selectClazzes[clz])
+            .includes(s.classCode);
+        });
     },
-    statistics () {
+    statistics() {
       const preferences = getCombinationPreferences(
         combinations,
-        this.noOfAllocation
-      )
+        this.noOfAllocation,
+      );
 
-      return Object.assign([], subjects).map(subject => {
-        subject.count = preferences.filter(p => subject.code === p).length
-        return subject
-      })
-    }
-  }
-}
+      return Object.assign([], subjects).map((subject) => {
+        subject.count = preferences.filter((p) => subject.code === p).length;
+        return subject;
+      });
+    },
+  },
+};
 </script>

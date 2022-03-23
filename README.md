@@ -5,7 +5,7 @@
 Once the program server started, STUDENT, TEACHER and ADMIN user can login to system.
 
 - STUDENT
-  - prioritise their subject combinations.
+  - prioritize their subject combinations.
   - confirm submission
   - print out reply slip for sign back by parents
 - TEACHER
@@ -14,7 +14,7 @@ Once the program server started, STUDENT, TEACHER and ADMIN user can login to sy
   - includes features of TEACHER user
   - can upload students rank for subject allocation
   - can adjust subject capacity for subject allocation
-  - can allocate students preference if the above 2 informations are provided
+  - can allocate students preference if the above 2 information is provided
 
 ### Schemas of `teacher.json` and `student.json`
 
@@ -32,8 +32,8 @@ Once the program server started, STUDENT, TEACHER and ADMIN user can login to sy
   {
     "name": String,
     "cname": String,
-    "classcode": String,
-    "classno": Number,
+    "classCode": String,
+    "classNo": Number,
     "userAlias": String
   }, ...
 ```

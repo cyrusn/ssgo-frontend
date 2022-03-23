@@ -35,66 +35,66 @@
 </template>
 
 <script>
-import StudentTable from '@/components/StudentTable'
-import DownloadListButtonGroup from '@/components/DownloadListButtonGroup'
+import StudentTable from "@/components/StudentTable";
+import DownloadListButtonGroup from "@/components/DownloadListButtonGroup";
 
-import _ from 'lodash'
-import { mapState, mapGetters } from 'vuex'
+import _ from "lodash";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   components: {
     StudentTable,
-    DownloadListButtonGroup
+    DownloadListButtonGroup,
   },
-  data () {
+  data() {
     return {
-      clazzes: ['3A', '3B', '3C', '3D', '3E'],
+      clazzes: ["3A", "3B", "3C", "3D", "3E"],
       filterType: 0,
-      classcodeFilter: '',
-      isConfirmedFilter: '',
-      isX3Filter: ''
-    }
+      classcodeFilter: "",
+      isConfirmedFilter: "",
+      isX3Filter: "",
+    };
   },
   computed: {
-    filename () {
-      const { classcodeFilter, isConfirmedFilter } = this
-      const names = ['student', classcodeFilter, isConfirmedFilter]
-      return _.compact(names).join('-')
+    filename() {
+      const { classcodeFilter, isConfirmedFilter } = this;
+      const names = ["student", classcodeFilter, isConfirmedFilter];
+      return _.compact(names).join("-");
     },
-    ...mapState('students', ['students', 'signatures']),
-    ...mapGetters(['role']),
-    filteredStudents () {
-      const { students, classcodeFilter, isConfirmedFilter, isX3Filter } = this
+    ...mapState("students", ["students", "signatures"]),
+    ...mapGetters(["role"]),
+    filteredStudents() {
+      const { students, classcodeFilter, isConfirmedFilter, isX3Filter } = this;
       return _(students)
-        .filter(s => {
+        .filter((s) => {
           if (classcodeFilter) {
-            return s.classcode === classcodeFilter
+            return s.classcode === classcodeFilter;
           }
-          return true
+          return true;
         })
-        .filter(s => {
+        .filter((s) => {
           switch (isConfirmedFilter) {
-            case 'confirmed':
-              return s.isConfirmed
-            case 'unconfirmed':
-              return !s.isConfirmed
+            case "confirmed":
+              return s.isConfirmed;
+            case "unconfirmed":
+              return !s.isConfirmed;
             default:
-              return true
+              return true;
           }
         })
-        .filter(s => {
+        .filter((s) => {
           switch (isX3Filter) {
-            case 'x3':
-              return s.isX3
-            case 'notX3':
-              return !s.isX3
+            case "x3":
+              return s.isX3;
+            case "notX3":
+              return !s.isX3;
             default:
-              return true
+              return true;
           }
         })
-        .orderBy(['classcode', 'classno'])
-        .value()
-    }
-  }
-}
+        .orderBy(["classCode", "classNo"])
+        .value();
+    },
+  },
+};
 </script>
