@@ -132,9 +132,9 @@ export default {
     },
     setIsConfirmed (
       { dispatch, rootState, rootGetters },
-      { userAlias, isconfirmed }
+      { userAlias, isConfirmed }
     ) {
-      fetch(`./api/student/${userAlias}/isconfirmed/${isconfirmed}`, {
+      fetch(`./api/student/${userAlias}/isconfirmed/${isConfirmed}`, {
         method: 'PUT',
         headers: { jwt: rootState.jwt }
       })

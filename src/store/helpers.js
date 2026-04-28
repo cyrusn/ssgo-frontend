@@ -1,11 +1,11 @@
-function checkError (res) {
+function checkError(res) {
   if (!res.ok) {
     throw res
   }
   return res
 }
 
-function alertMessage (res) {
+function alertMessage(res) {
   res.json().then(json => {
     const { message } = json
     if (message.toLowerCase() === 'token is expired') {

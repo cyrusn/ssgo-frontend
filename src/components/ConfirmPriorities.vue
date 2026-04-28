@@ -105,7 +105,7 @@ export default {
     ...mapActions('student', ['setIsConfirmed', 'setSignature']),
     onConfirm () {
       const { userAlias } = this
-      this.setIsConfirmed({ userAlias, isconfirmed: true })
+      this.setIsConfirmed({ userAlias, isConfirmed: true })
       this.modal.hide()
     },
     onClickConfirmButton () {

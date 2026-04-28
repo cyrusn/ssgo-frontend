@@ -42,7 +42,7 @@ library.add(
 )
 
 const app = createApp({
-  render () {
+  render() {
     return h(App)
   }
 })

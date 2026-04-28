@@ -14,7 +14,7 @@ import Statistics from '@/views/Admin/Statistics.vue'
 import Student from '@/views/Student/Student.vue'
 import Selection from '@/views/Student/Selection.vue'
 
-function ViewBuilder (View) {
+function ViewBuilder(View) {
   return {
     default: View,
     navbar: Navbar

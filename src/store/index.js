@@ -10,17 +10,8 @@ import _ from "lodash";
 // https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library#answer-38552302
 function parseJWT(jwt) {
   const base64Url = jwt.split(".")[1];
-  const base64 = base64Url.replace("-", "+").replace("_", "/");
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split("")
-      .map(function(c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join(""),
-  );
-  const result = JSON.parse(jsonPayload);
-  // console.log(result);
+  const payload = Buffer.from(base64Url, 'base64');
+  const result = JSON.parse(payload.toString());
   return result;
 }
 
